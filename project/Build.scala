@@ -5,7 +5,7 @@ import PlayProject._
 object ApplicationBuild extends Build {
 
     val appName         = "smallCRM"
-    val appVersion      = "0.1"
+    val appVersion      = "dev"
 
     val appDependencies = Seq(
       // Add your project dependencies here,
