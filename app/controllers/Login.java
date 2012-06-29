@@ -37,5 +37,10 @@ public class Login extends Controller {
 	public static Result login() {
 		return ok(login.render(form(Login.LoginForm.class)));
 	}
+	
+	public static Result logout() {
+		Context.current().session().remove("username");
+		return ok(login.render(form(Login.LoginForm.class)));
+	}
 
 }
