@@ -5,3 +5,6 @@
 # Home page
 GET     /                           controllers.Application.index()
 POST    /                           controllers.Application.index()
+
+GET		/login						controllers.Login.login()
+POST	/login						controllers.Login.authenticate()	

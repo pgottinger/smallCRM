@@ -1,17 +1,39 @@
+@(form: Form[Login.LoginForm])
 <html>
-<head>
-<title>Login</title>
-</head>
-<body>
-<form action="" method="POST">
-User: <br/>
-<input type="text" name="username" />
-<br/>
-<br/>
-Password:<br/>
-<input type="password" name="password" /><br/>
-<br/>
-<input type="submit" value="login"/>
-</form>
-</body>
+    <head>
+        <title>Login</title>
+    </head>
+    <body>
+        
+        @helper.form(routes.Login.authenticate) {
+            
+            <h1>Login</h1>
+            
+            @if(form.hasGlobalErrors) { 
+                <p class="error">
+                    @form.globalError.message
+                </p>
+            }
+            
+            @if(flash.contains("success")) {
+                <p class="success">
+                    @flash.get("success")
+                </p>
+            }
+            
+            <p>
+                <input type="username" name="username" placeholder="Username" value="@form("username").value">
+            </p>
+            <p>
+                <input type="password" name="password" placeholder="Password">
+            </p>
+            <p>
+                <button type="submit">Login</button>
+            </p>
+            
+        }
+    </body>
 </html>
+    
+
+

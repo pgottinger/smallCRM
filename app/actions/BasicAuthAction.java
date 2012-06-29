@@ -3,7 +3,6 @@ package actions;
 import play.mvc.Action;
 import play.mvc.Http.Context;
 import play.mvc.Result;
-import views.html.login;
 
 public class BasicAuthAction extends Action<BasicAuth> {
 
@@ -14,7 +13,7 @@ public class BasicAuthAction extends Action<BasicAuth> {
 		if(username != null) {
 			return delegate.call(context);
 		} else {
-			return ok(login.render());
+			return redirect("/login");
 		}
 	}
 }

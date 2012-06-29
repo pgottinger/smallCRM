@@ -3,6 +3,7 @@ package controllers;
 import play.data.Form;
 import play.mvc.Controller;
 import play.mvc.Result;
+import play.mvc.Http.Context;
 import views.html.login;
 
 public class Login extends Controller {
@@ -15,16 +16,18 @@ public class Login extends Controller {
 		public String validate() {
 			if (!username.equals("peter") || !password.equals("password")) {
 				return "Invalid user or password";
+			} else {
+				Context.current().session().put("username", username);
 			}
+				
 			return null;
 		}
-
 	}
 
 	public static Result authenticate() {
 		Form<LoginForm> loginForm = form(LoginForm.class).bindFromRequest();
 		if (loginForm.hasErrors()) {
-			return badRequest(login.render());
+			return badRequest(login.render(loginForm));
 		} else {
 			session("username", loginForm.get().username);
 			return redirect(routes.Application.index());
@@ -32,7 +35,7 @@ public class Login extends Controller {
 	}
 	
 	public static Result login() {
-		return ok(login.render());
+		return ok(login.render(form(Login.LoginForm.class)));
 	}
 
 }
