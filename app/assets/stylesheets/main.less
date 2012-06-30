@@ -15,6 +15,12 @@ a {
     }
 }
 
+.logo {
+	background: url(/assets/images/smallCRM-logo.png);
+	width: 185px;
+	height: 60px;
+}
+
 p.note {
     margin: 10px auto 0;
     width: 300px;
@@ -33,7 +39,7 @@ form {
     padding: 20px;
     background: #fff;
     border-radius: 5px;
-    box-shadow: 0 2px 5px rgba(0,0,0,.3);
+    box-shadow: 0 20px 20px rgba(0,0,0,.3);
     text-align: center;
     h1 {
         margin: 0 0 10px;
@@ -61,7 +67,7 @@ form {
         padding: 2px;
         background: rgba(0,0,0,.05);
         border: 1px solid rgba(0,0,0,.15);
-        box-shadow: 0 1px 2px rgba(0,0,0,.1) inset;
+        box-shadow: 0 5px 2px rgba(0,0,0,.1) inset;
         border-radius: 3px;
         font-size: 14px;
         &:invalid:not(:focus) {
@@ -69,9 +75,12 @@ form {
         }
     }
     button {
-        display: block;
-        width: inherit;
+		width:80px;
+		height: 30px;
         font-size: 14px;
+        border-radius: 5px;
+        border: 1px solid #359a4c; 
+        background: #359a4c;
     }
 }
 
