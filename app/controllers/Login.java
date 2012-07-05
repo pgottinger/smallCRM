@@ -1,9 +1,10 @@
 package controllers;
 
+import models.User;
 import play.data.Form;
 import play.mvc.Controller;
-import play.mvc.Result;
 import play.mvc.Http.Context;
+import play.mvc.Result;
 import views.html.login;
 
 public class Login extends Controller {
@@ -14,12 +15,12 @@ public class Login extends Controller {
 		public String password;
 
 		public String validate() {
-			if (!username.equals("peter") || !password.equals("password")) {
+			if (User.authenticate(username, password) == null) {
 				return "Invalid user or password";
 			} else {
 				Context.current().session().put("username", username);
 			}
-				
+
 			return null;
 		}
 	}
@@ -33,11 +34,11 @@ public class Login extends Controller {
 			return redirect(routes.Application.index());
 		}
 	}
-	
+
 	public static Result login() {
 		return ok(login.render(form(Login.LoginForm.class)));
 	}
-	
+
 	public static Result logout() {
 		Context.current().session().remove("username");
 		return ok(login.render(form(Login.LoginForm.class)));
