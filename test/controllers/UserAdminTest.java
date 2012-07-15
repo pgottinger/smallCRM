@@ -9,9 +9,9 @@ import static play.mvc.Http.Status.OK;
 import static play.test.Helpers.callAction;
 import static play.test.Helpers.fakeApplication;
 import static play.test.Helpers.fakeRequest;
+import static play.test.Helpers.inMemoryDatabase;
 import static play.test.Helpers.running;
 import static play.test.Helpers.status;
-import static play.test.Helpers.inMemoryDatabase;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -20,7 +20,6 @@ import models.User;
 
 import org.junit.Test;
 
-import play.api.test.Helpers;
 import play.mvc.Result;
 import controllers.UserAdmin.CreateUserForm;
 
@@ -103,6 +102,23 @@ public class UserAdminTest {
 						fakeRequest().withFormUrlEncodedBody(data));
 
 				assertNull(User.getUserByName("dummyUser"));
+			}
+		});
+	}
+
+	@Test
+	public void dontCreateUserWhenUsernameEmpty() {
+		running(fakeApplication(inMemoryDatabase()), new Runnable() {
+			@Override
+			public void run() {
+				Map<String, String> data = new HashMap<String, String>();
+				data.put("username", "");
+				data.put("password", "dummyPassword");
+
+				callAction(controllers.routes.ref.UserAdmin.createUser(),
+						fakeRequest().withFormUrlEncodedBody(data));
+
+				assertThat(User.getNumberOfUsers(), is(0));
 			}
 		});
 	}

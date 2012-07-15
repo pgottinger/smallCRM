@@ -2,6 +2,7 @@ package controllers;
 
 import models.User;
 import play.data.Form;
+import play.data.validation.Constraints.Required;
 import play.mvc.Controller;
 import play.mvc.Http.Context;
 import play.mvc.Result;
@@ -11,17 +12,38 @@ public class Login extends Controller {
 
 	public static class LoginForm {
 
+		protected static final String INVALID_USER_OR_PASSWORD = "Invalid user or password";
+
+		@Required
 		public String username;
+
+		@Required
 		public String password;
 
 		public String validate() {
 			if (User.authenticate(username, password) == null) {
-				return "Invalid user or password";
+				return INVALID_USER_OR_PASSWORD;
 			} else {
-				Context.current().session().put("username", username);
+				// Context.current().session().put("username", username);
 			}
 
 			return null;
+		}
+
+		public String getUsername() {
+			return username;
+		}
+
+		public void setUsername(String username) {
+			this.username = username;
+		}
+
+		public String getPassword() {
+			return password;
+		}
+
+		public void setPassword(String password) {
+			this.password = password;
 		}
 	}
 

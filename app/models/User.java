@@ -46,7 +46,6 @@ public class User extends Model {
 	}
 
 	public static User authenticate(String userName, String userPassword) {
-
 		return find.where().eq("userName", userName)
 				.eq("userPassword", hashPassword(userPassword)).findUnique();
 
@@ -54,6 +53,10 @@ public class User extends Model {
 
 	public static User getUserByName(String username) {
 		return find.where().eq("userName", username).findUnique();
+	}
+
+	public static int getNumberOfUsers() {
+		return find.getMaxRows();
 	}
 
 	private static String hashPassword(String plain) {
