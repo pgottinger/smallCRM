@@ -52,6 +52,10 @@ public class User extends Model {
 
 	}
 
+	public static User getUserByName(String username) {
+		return find.where().eq("userName", username).findUnique();
+	}
+
 	private static String hashPassword(String plain) {
 		try {
 			MessageDigest md = MessageDigest.getInstance("SHA-512");
