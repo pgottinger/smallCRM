@@ -1,0 +1,18 @@
+@(user: User)
+<html>
+<head>
+<title>smallCRM</title>
+<link rel="stylesheet" href="@routes.Assets.at("stylesheets/main.css")">
+</head>
+<body>
+<img src="/assets/images/smallCRM-logo.png" border="0"/><br/>
+<div id="menu">
+	<ul>
+		<li>Klienten</li>
+		<li>Nachrichten</li>
+		@if(user.isAdmin()) {
+			<li>Administration</li>
+		}
+		<li><a href="/logout">Logout</a></li>
+	</ul>
+</div>

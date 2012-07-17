@@ -23,10 +23,7 @@ public class Login extends Controller {
 		public String validate() {
 			if (User.authenticate(username, password) == null) {
 				return INVALID_USER_OR_PASSWORD;
-			} else {
-				// Context.current().session().put("username", username);
 			}
-
 			return null;
 		}
 

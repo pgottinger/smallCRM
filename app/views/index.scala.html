@@ -1,14 +1,7 @@
-@(message: String)
+@(message: String, user: User)
 
-<html>
-<head>
-<title>smallCRM main page</title>
-<link rel="stylesheet" href="@routes.Assets.at("stylesheets/main.css")">
-</head>
-<body>
+@header(user)
+
 @message
-<br/>
-<br/>
-<a href="/logout">logout</a>
-</body>
-</html>
+
+@footer()

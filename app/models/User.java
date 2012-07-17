@@ -74,4 +74,12 @@ public class User extends Model {
 			throw new IllegalArgumentException(e);
 		}
 	}
+
+	public String getUserName() {
+		return userName;
+	}
+
+	public boolean isAdmin() {
+		return isAdmin;
+	}
 }
