@@ -7,12 +7,13 @@
 <body>
 <img src="/assets/images/smallCRM-logo.png" border="0"/><br/>
 <div id="menu">
-	<ul>
-		<li>Klienten</li>
-		<li>Nachrichten</li>
+	<ul id="menu">
+		<li><a href="/">Klienten</a></li>
+		<li><a href="/messages">Nachrichten</a></li>
 		@if(user.isAdmin()) {
-			<li>Administration</li>
+			<li><a href="/admin">Administration</a></li>
 		}
 		<li><a href="/logout">Logout</a></li>
 	</ul>
 </div>
+<br/>

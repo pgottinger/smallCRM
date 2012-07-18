@@ -1,5 +1,6 @@
 package controllers;
 
+import models.Configuration;
 import models.User;
 import play.data.Form;
 import play.data.validation.Constraints.Required;
@@ -55,7 +56,11 @@ public class Login extends Controller {
 	}
 
 	public static Result login() {
-		return ok(login.render(form(Login.LoginForm.class)));
+		if (Configuration.isSystemAlreadyInstalled()) {
+			return ok(login.render(form(Login.LoginForm.class)));
+		} else {
+			return redirect(routes.Installation.install());
+		}
 	}
 
 	public static Result logout() {

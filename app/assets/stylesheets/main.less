@@ -1,4 +1,5 @@
 // ----------------------- MAIN STYLES
+
 body {
     background: #AAAAAA;
     color: #000000;
@@ -13,88 +14,41 @@ a {
     }
 }
 
-p.note {
-    margin: 10px auto 0;
-    width: 300px;
-    padding: 20px;
-    text-align: center;
-    color: #445868;
-    text-shadow: 1px 1px rgba(255,255,255,.6);
-    em {
-        font-weight: bold;
-    }
-}
-
-form {
-    margin: 100px auto 0;
-    width: 300px;
-    padding: 20px;
-    background: #fff;
-    border-radius: 5px;
-    box-shadow: 0 20px 20px rgba(0,0,0,.3);
-    text-align: center;
-    h1 {
-        margin: 0 0 10px;
-        font-size: 20px;
-        font-weight: bold;
-    }
-    p {
-        width: inherit;
-        margin: 5px 0;
-        color: #999;
-    }
-    p.error {
-        color: #c00;
-        margin-bottom: 10px;
-        text-shadow: 1px 1px rgba(0,0,0,.1);
-    }
-    p.success {
-        color: #83BD41; 
-        margin-bottom: 10px;
-        text-shadow: 1px 1px rgba(0,0,0,.1);
-    }
-    input {
-        display: block;
-        width: inherit;
-        padding: 2px;
-        background: rgba(0,0,0,.05);
-        border: 1px solid rgba(0,0,0,.15);
-        box-shadow: 0 5px 2px rgba(0,0,0,.1) inset;
-        border-radius: 3px;
-        font-size: 14px;
-        &:invalid:not(:focus) {
-            border-color: red;
-        }
-    }
-    button {
-		width:80px;
-		height: 30px;
-        font-size: 14px;
-        border-radius: 5px;
-        border: 1px solid #359a4c; 
-        background: #359a4c;
-    }
-}
-
 * { margin: 0; padding: 0; }
 
 div#menu {
   color: #FFFFFF;
-  background: #359a4c;
   font-size: 18px;
-  border: 5px solid #359a4c;
-  margin: 0px auto;
-  padding: 0px; 
+  padding-right: 5px; 
   text-align:right;
 }
 
-ul {
+div#title {
+  color: #FFFFFF;
+  font-size: 24px; 
+  text-align:center;
+  padding: 10px;
+  background: #359a4c;
+}
+
+ul#menu {
  display: block;
-}
+ height: 30px;
 
-ul li {
+ li {
  display:inline;
- padding: 10px;
+ 
 }
 
+ li a {
+ padding: 10px;
+ border-radius: 5px;
+ background: #359a4c;
+}
+
+ li a:hover {
+  color: #FFFFFF;
+  background: #46AB5C;
+}
+}
 

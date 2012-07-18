@@ -1,14 +1,14 @@
-@(form: Form[UserAdmin.CreateUserForm])
+@(form: Form[Installation.InstallationForm])
 <html>
     <head>
-        <title>Create new user</title>
+        <title>Install system</title>
         <link rel="stylesheet" href="@routes.Assets.at("stylesheets/login.css")">
     </head>
     <body>
         <div align="center"><img src="/assets/images/smallCRM-logo.png" border="0"/></div>
-        @helper.form(routes.UserAdmin.createUser) {
+        @helper.form(routes.Installation.installSystem) {
             
-            <h1>Create new user</h1>
+            <h1>Install system</h1>
             
             @if(form.hasGlobalErrors) { 
                 <p class="error">
@@ -23,7 +23,7 @@
             }
             
             <p>
-                <input type="username" name="username" placeholder="Username" value="@form("username").value">
+                <input type="username" name="username" placeholder="Admin-Username" value="@form("username").value">
             </p>
             <p>
                 <input type="password" name="password" placeholder="Password">

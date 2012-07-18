@@ -10,6 +10,9 @@ GET		/login						controllers.Login.login()
 POST	/login						controllers.Login.authenticate()
 GET		/logout						controllers.Login.logout()
 
+GET		/install					controllers.Installation.install()
+POST	/installSystem				controllers.Installation.installSystem()
+
 POST	/createUser					controllers.UserAdmin.createUser()
 GET		/showCreateUserForm			controllers.UserAdmin.showCreateUserForm()
 

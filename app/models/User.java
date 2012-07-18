@@ -4,6 +4,7 @@ import java.io.UnsupportedEncodingException;
 import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.UUID;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -12,12 +13,16 @@ import play.data.Form;
 import play.data.format.Formats;
 import play.data.validation.Constraints;
 import play.db.ebean.Model;
+import controllers.Installation.InstallationForm;
 import controllers.UserAdmin.CreateUserForm;
 
 @Entity
 public class User extends Model {
 
 	@Id
+	@Constraints.Required
+	private final UUID userId;
+
 	@Constraints.Required
 	@Formats.NonEmpty
 	private final String userName;
@@ -34,6 +39,7 @@ public class User extends Model {
 
 	public User(String userName, String userPassword, boolean isAdmin) {
 		super();
+		this.userId = UUID.randomUUID();
 		this.userName = userName;
 		this.userPassword = hashPassword(userPassword);
 		this.isAdmin = isAdmin;
@@ -42,6 +48,13 @@ public class User extends Model {
 	public User(Form<CreateUserForm> createUserForm) {
 		this(createUserForm.field("username").value(), createUserForm.field(
 				"password").value(), true);
+
+	}
+
+	public static User createUserFromInstallationForm(
+			Form<InstallationForm> installationForm) {
+		return new User(installationForm.field("username").value(),
+				installationForm.field("password").value(), true);
 
 	}
 
@@ -81,5 +94,9 @@ public class User extends Model {
 
 	public boolean isAdmin() {
 		return isAdmin;
+	}
+
+	public UUID getUserId() {
+		return userId;
 	}
 }
