@@ -1,5 +1,7 @@
 package models;
 
+import java.util.UUID;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
@@ -13,14 +15,14 @@ enum PhoneCategory {
 public class PhoneNumber extends Model {
 
 	@Id
-	private final long id;
+	private final UUID phoneId;
 
 	private final PhoneCategory category;
 	private final String phoneNumber;
 
-	public PhoneNumber(long id, PhoneCategory category, String phoneNumber) {
+	public PhoneNumber(UUID phoneId, PhoneCategory category, String phoneNumber) {
 		super();
-		this.id = id;
+		this.phoneId = phoneId;
 		this.category = category;
 		this.phoneNumber = phoneNumber;
 	}

@@ -2,6 +2,7 @@ package models;
 
 import java.util.Collection;
 import java.util.Date;
+import java.util.UUID;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -12,7 +13,7 @@ import play.db.ebean.Model;
 public class Relative extends Model {
 
 	@Id
-	private final long id;
+	private final UUID relativeId;
 
 	private final String name;
 	private final String prename;
@@ -32,12 +33,12 @@ public class Relative extends Model {
 
 	private final Date createdOn;
 
-	public Relative(long id, String name, String prename, Date birthday,
-			String street, String streetNumber, String zipCode,
+	public Relative(UUID relativeId, String name, String prename,
+			Date birthday, String street, String streetNumber, String zipCode,
 			Collection<PhoneNumber> phones, Collection<MailAdress> mails,
 			String diseases, String biography, Date custodyStart,
 			String custodyDemandedBy, Date custodyRequestDate, Date createdOn) {
-		this.id = id;
+		this.relativeId = relativeId;
 		this.name = name;
 		this.prename = prename;
 		this.birthday = birthday;
