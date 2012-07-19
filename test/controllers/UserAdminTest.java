@@ -49,13 +49,14 @@ public class UserAdminTest {
 	}
 
 	@Test
-	public void testUserFormValidationBothFieldsEmpty() {
+	public void testUserFormValidationAllFieldsEmpty() {
 		CreateUserForm form = new CreateUserForm();
 		form.username = "";
 		form.password = "";
+		form.email = "";
 
 		assertEquals(form.validate(),
-				CreateUserForm.USERNAME_AND_PASSWORD_MUST_BE_FILLED);
+				CreateUserForm.USERNAME_PASSWORD_AND_EMAIL_MUST_BE_FILLED);
 	}
 
 	@Test
@@ -63,9 +64,10 @@ public class UserAdminTest {
 		CreateUserForm form = new CreateUserForm();
 		form.username = "";
 		form.password = "dummyPassword";
+		form.email = "dummy@email.com";
 
 		assertEquals(form.validate(),
-				CreateUserForm.USERNAME_AND_PASSWORD_MUST_BE_FILLED);
+				CreateUserForm.USERNAME_PASSWORD_AND_EMAIL_MUST_BE_FILLED);
 	}
 
 	@Test
@@ -73,9 +75,21 @@ public class UserAdminTest {
 		CreateUserForm form = new CreateUserForm();
 		form.username = "dummyUser";
 		form.password = "";
+		form.email = "dummy@email.com";
 
 		assertEquals(form.validate(),
-				CreateUserForm.USERNAME_AND_PASSWORD_MUST_BE_FILLED);
+				CreateUserForm.USERNAME_PASSWORD_AND_EMAIL_MUST_BE_FILLED);
+	}
+
+	@Test
+	public void testUserFormValidatioEmailEmpty() {
+		CreateUserForm form = new CreateUserForm();
+		form.username = "dummyUser";
+		form.password = "dummyPassword";
+		form.email = "";
+
+		assertEquals(form.validate(),
+				CreateUserForm.USERNAME_PASSWORD_AND_EMAIL_MUST_BE_FILLED);
 	}
 
 	@Test
@@ -83,6 +97,7 @@ public class UserAdminTest {
 		CreateUserForm form = new CreateUserForm();
 		form.username = "dummyUser";
 		form.password = "dummyPassword";
+		form.email = "dummy@email.com";
 
 		assertNull(form.validate());
 	}
@@ -103,6 +118,7 @@ public class UserAdminTest {
 		Map<String, String> data = new HashMap<String, String>();
 		data.put("username", "dummyUser");
 		data.put("password", "dummyPassword");
+		data.put("email", "user@email.com");
 
 		callAction(
 				controllers.routes.ref.UserAdmin.createUser(),
@@ -118,6 +134,7 @@ public class UserAdminTest {
 		Map<String, String> data = new HashMap<String, String>();
 		data.put("username", "dummyUser");
 		data.put("password", "");
+		data.put("email", "user@email.com");
 
 		callAction(controllers.routes.ref.UserAdmin.createUser(), fakeRequest()
 				.withFormUrlEncodedBody(data));
@@ -130,6 +147,22 @@ public class UserAdminTest {
 		Map<String, String> data = new HashMap<String, String>();
 		data.put("username", "");
 		data.put("password", "dummyPassword");
+		data.put("email", "user@email.com");
+
+		callAction(
+				controllers.routes.ref.UserAdmin.createUser(),
+				fakeRequest().withFormUrlEncodedBody(data).withSession(
+						"username", currentUser.getUserName()));
+
+		assertThat(User.getNumberOfUsers(), is(0));
+	}
+
+	@Test
+	public void dontCreateUserWhenEMailEmpty() {
+		Map<String, String> data = new HashMap<String, String>();
+		data.put("username", "dummyUser");
+		data.put("password", "dummyPassword");
+		data.put("email", "");
 
 		callAction(
 				controllers.routes.ref.UserAdmin.createUser(),
@@ -140,7 +173,8 @@ public class UserAdminTest {
 	}
 
 	private User createCurrentUser() {
-		currentUser = new User("currentUser", "dummyPassword", true);
+		currentUser = new User("currentUser", "dummyPassword",
+				"dummy@email.com", true);
 		currentUser.save();
 		return currentUser;
 	}

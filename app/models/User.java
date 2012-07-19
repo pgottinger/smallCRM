@@ -33,30 +33,37 @@ public class User extends Model {
 	private final String userPassword;
 
 	@Constraints.Required
+	@Formats.NonEmpty
+	private final String userEmail;
+
+	@Constraints.Required
 	private final boolean isAdmin;
 
 	public static Model.Finder<String, User> find = new Model.Finder(
 			String.class, User.class);
 
-	public User(String userName, String userPassword, boolean isAdmin) {
+	public User(String userName, String userPassword, String userEmail,
+			boolean isAdmin) {
 		super();
 		this.userId = UUID.randomUUID();
 		this.userName = userName;
 		this.userPassword = hashPassword(userPassword);
+		this.userEmail = userEmail;
 		this.isAdmin = isAdmin;
 	}
 
 	public User(Form<CreateUserForm> createUserForm) {
 		this(createUserForm.field("username").value(), createUserForm.field(
-				"password").value(), new Boolean(createUserForm.field(
-				"username").value()));
+				"password").value(), createUserForm.field("email").value(),
+				new Boolean(createUserForm.field("isAdmin").value()));
 
 	}
 
 	public static User createUserFromInstallationForm(
 			Form<InstallationForm> installationForm) {
 		return new User(installationForm.field("username").value(),
-				installationForm.field("password").value(), true);
+				installationForm.field("password").value(), installationForm
+						.field("email").value(), true);
 
 	}
 
@@ -104,5 +111,9 @@ public class User extends Model {
 
 	public UUID getUserId() {
 		return userId;
+	}
+
+	public String getUserEmail() {
+		return userEmail;
 	}
 }

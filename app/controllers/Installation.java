@@ -11,7 +11,7 @@ import views.html.install;
 public class Installation extends Controller {
 
 	public static class InstallationForm {
-		protected static final String USERNAME_AND_PASSWORD_MUST_BE_FILLED = "Username and password must be filled!";
+		protected static final String USERNAME_PASSWORD_AND_EMAIL_MUST_BE_FILLED = "Username and password must be filled!";
 
 		@Required
 		public String username;
@@ -19,11 +19,19 @@ public class Installation extends Controller {
 		@Required
 		public String password;
 
+		@Required
+		public String email;
+
 		public String validate() {
-			if (username == "" || password == "") {
-				return USERNAME_AND_PASSWORD_MUST_BE_FILLED;
+			if (parameterInvalid(username) || parameterInvalid(password)
+					|| parameterInvalid(email)) {
+				return USERNAME_PASSWORD_AND_EMAIL_MUST_BE_FILLED;
 			}
 			return null;
+		}
+
+		private boolean parameterInvalid(String parameter) {
+			return parameter == null || parameter == "";
 		}
 
 		public String getUsername() {
@@ -40,6 +48,14 @@ public class Installation extends Controller {
 
 		public void setPassword(String password) {
 			this.password = password;
+		}
+
+		public String getEmail() {
+			return email;
+		}
+
+		public void setEmail(String email) {
+			this.email = email;
 		}
 	}
 

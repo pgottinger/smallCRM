@@ -49,9 +49,9 @@ public class InstallationTest {
 		InstallationForm form = new InstallationForm();
 		form.username = "";
 		form.password = "";
-
+		form.email = "";
 		assertEquals(form.validate(),
-				InstallationForm.USERNAME_AND_PASSWORD_MUST_BE_FILLED);
+				InstallationForm.USERNAME_PASSWORD_AND_EMAIL_MUST_BE_FILLED);
 	}
 
 	@Test
@@ -59,9 +59,10 @@ public class InstallationTest {
 		InstallationForm form = new InstallationForm();
 		form.username = "";
 		form.password = "dummyPassword";
+		form.email = "dummy@email.com";
 
 		assertEquals(form.validate(),
-				InstallationForm.USERNAME_AND_PASSWORD_MUST_BE_FILLED);
+				InstallationForm.USERNAME_PASSWORD_AND_EMAIL_MUST_BE_FILLED);
 	}
 
 	@Test
@@ -69,9 +70,21 @@ public class InstallationTest {
 		InstallationForm form = new InstallationForm();
 		form.username = "dummyUser";
 		form.password = "";
+		form.email = "dummy@email.com";
 
 		assertEquals(form.validate(),
-				InstallationForm.USERNAME_AND_PASSWORD_MUST_BE_FILLED);
+				InstallationForm.USERNAME_PASSWORD_AND_EMAIL_MUST_BE_FILLED);
+	}
+
+	@Test
+	public void testUserFormValidationEmailEmpty() {
+		InstallationForm form = new InstallationForm();
+		form.username = "dummyUser";
+		form.password = "dummyPassword";
+		form.email = "";
+
+		assertEquals(form.validate(),
+				InstallationForm.USERNAME_PASSWORD_AND_EMAIL_MUST_BE_FILLED);
 	}
 
 	@Test
@@ -79,6 +92,7 @@ public class InstallationTest {
 		InstallationForm form = new InstallationForm();
 		form.username = "dummyUser";
 		form.password = "dummyPassword";
+		form.email = "dummy@email.com";
 
 		assertNull(form.validate());
 	}
@@ -96,6 +110,7 @@ public class InstallationTest {
 		Map<String, String> data = new HashMap<String, String>();
 		data.put("username", "dummyUser");
 		data.put("password", "dummyPassword");
+		data.put("email", "user@email.com");
 
 		callAction(controllers.routes.ref.Installation.installSystem(),
 				fakeRequest().withFormUrlEncodedBody(data));
@@ -105,10 +120,24 @@ public class InstallationTest {
 	}
 
 	@Test
+	public void dontInstallSystemWhenUsernameEmpty() {
+		Map<String, String> data = new HashMap<String, String>();
+		data.put("username", "");
+		data.put("password", "dummyPassword");
+		data.put("email", "user@email.com");
+
+		callAction(controllers.routes.ref.Installation.installSystem(),
+				fakeRequest().withFormUrlEncodedBody(data));
+
+		assertThat(User.getNumberOfUsers(), is(0));
+	}
+
+	@Test
 	public void dontInstallSystemWhenPasswordEmpty() {
 		Map<String, String> data = new HashMap<String, String>();
 		data.put("username", "dummyUser");
 		data.put("password", "");
+		data.put("email", "user@email.com");
 
 		callAction(controllers.routes.ref.Installation.installSystem(),
 				fakeRequest().withFormUrlEncodedBody(data));
@@ -117,14 +146,16 @@ public class InstallationTest {
 	}
 
 	@Test
-	public void dontInstallSystemWhenUsernameEmpty() {
+	public void dontInstallSystemWhenEmailEmpty() {
 		Map<String, String> data = new HashMap<String, String>();
-		data.put("username", "");
+		data.put("username", "dummyUser");
 		data.put("password", "dummyPassword");
+		data.put("email", "");
 
 		callAction(controllers.routes.ref.Installation.installSystem(),
 				fakeRequest().withFormUrlEncodedBody(data));
 
 		assertThat(User.getNumberOfUsers(), is(0));
 	}
+
 }

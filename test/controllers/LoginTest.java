@@ -153,7 +153,8 @@ public class LoginTest {
 	}
 
 	private User createTestUser() {
-		User testUser = new User("dummyUser", "dummyPassword", true);
+		User testUser = new User("dummyUser", "dummyPassword",
+				"dummy@email.com", true);
 		testUser.save();
 		return testUser;
 	}
