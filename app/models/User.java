@@ -13,6 +13,7 @@ import play.data.Form;
 import play.data.format.Formats;
 import play.data.validation.Constraints;
 import play.db.ebean.Model;
+import play.mvc.Http.Context;
 import controllers.Installation.InstallationForm;
 import controllers.UserAdmin.CreateUserForm;
 
@@ -47,7 +48,8 @@ public class User extends Model {
 
 	public User(Form<CreateUserForm> createUserForm) {
 		this(createUserForm.field("username").value(), createUserForm.field(
-				"password").value(), true);
+				"password").value(), new Boolean(createUserForm.field(
+				"username").value()));
 
 	}
 
@@ -70,6 +72,10 @@ public class User extends Model {
 
 	public static int getNumberOfUsers() {
 		return find.getMaxRows();
+	}
+
+	public static User getLoggedInUser() {
+		return User.getUserByName(Context.current().session().get("username"));
 	}
 
 	private static String hashPassword(String plain) {

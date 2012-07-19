@@ -44,10 +44,17 @@ public class Installation extends Controller {
 	}
 
 	public static Result install() {
+		if (Configuration.isSystemAlreadyInstalled()) {
+			return redirect("/");
+		}
 		return ok(install.render(form(Installation.InstallationForm.class)));
 	}
 
 	public static Result installSystem() {
+		if (Configuration.isSystemAlreadyInstalled()) {
+			return redirect("/");
+		}
+
 		Form<InstallationForm> installationForm = form(InstallationForm.class)
 				.bindFromRequest();
 		if (installationForm.hasErrors()) {

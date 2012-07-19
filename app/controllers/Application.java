@@ -2,10 +2,10 @@ package controllers;
 
 import models.User;
 import play.mvc.Controller;
-import play.mvc.Result;
 import play.mvc.Http.Context;
-import views.html.index;
+import play.mvc.Result;
 import actions.BasicAuth;
+import views.html.index;
 
 @BasicAuth
 public class Application extends Controller {

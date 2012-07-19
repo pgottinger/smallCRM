@@ -1,11 +1,7 @@
-@(form: Form[UserAdmin.CreateUserForm])
-<html>
-    <head>
-        <title>Create new user</title>
-        <link rel="stylesheet" href="@routes.Assets.at("stylesheets/login.css")">
-    </head>
-    <body>
-        <div align="center"><img src="/assets/images/smallCRM-logo.png" border="0"/></div>
+@(form: Form[UserAdmin.CreateUserForm], user: User)
+
+@header(user)
+<link rel="stylesheet" href="@routes.Assets.at("stylesheets/login.css")">
         @helper.form(routes.UserAdmin.createUser) {
             
             <h1>Create new user</h1>
@@ -29,12 +25,14 @@
                 <input type="password" name="password" placeholder="Password">
             </p>
             <p>
+                Adminrechte? <input type="checkbox" name="isAdmin">
+            </p>
+            <p>
                 <button type="submit">Create</button>
             </p>
             
         }
-    </body>
-</html>
-    
+
+@footer()    
 
 
