@@ -1,35 +1,23 @@
+@import 'colors.less';
+
 // ----------------------- MAIN STYLES
 
 body {
-    background: #AAAAAA;
-    color: #000000;
+    background: @mainBackground;
+    color: @mainColor;
     font: Arial;
-}
-
-a {
-    color: #FFFFFF;
-    text-decoration: none;
-    &:hover {
-        color: #333333;
-    }
 }
 
 * { margin: 0; padding: 0; }
 
+// === Menu ===
+
 div#menu {
-  color: #FFFFFF;
   font-size: 18px;
   padding-right: 5px; 
   text-align:right;
 }
 
-div#title {
-  color: #FFFFFF;
-  font-size: 24px; 
-  text-align:center;
-  padding: 10px;
-  background: #359a4c;
-}
 
 ul#menu {
  display: block;
@@ -41,14 +29,37 @@ ul#menu {
 }
 
  li a {
+ color: @menuColor;
  padding: 10px;
  border-radius: 5px;
- background: #359a4c;
+ background: @menuBackground;
+ text-decoration:none;
 }
 
  li a:hover {
-  color: #FFFFFF;
-  background: #46AB5C;
+  color: @menuColorHover;
+  background: @menuBackgroundHover;
 }
 }
 
+// === Footer ===
+div#footer {
+  color: @footerColor;
+  font-size: 10px;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  border: 0;
+  text-align:center;
+  background: @footerBackground;
+}
+
+// === Content ===
+
+div#title {
+  color: @footerColor;
+  font-size: 24px; 
+  text-align:center;
+  padding: 10px;
+  background: @footerBackground;
+}

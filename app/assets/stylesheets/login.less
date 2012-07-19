@@ -1,14 +1,16 @@
+@import 'colors.less';
+
 body {
-    background: #AAAAAA;
-    color: #000000;
+    background: @mainBackground;
+    color: @mainColor;
     font: Arial;
 }
 
 a {
-    color: #FFFFFF;
+    color: @mainLink;
     text-decoration: none;
     &:hover {
-        color: #333333;
+        color: @mainLinkHover;
     }
 }
 
@@ -40,15 +42,14 @@ form {
     p {
         width: inherit;
         margin: 5px 0;
-        color: #999;
+        color: @mainColor;
     }
     p.error {
-        color: #c00;
+        color: @errorColor;
         margin-bottom: 10px;
         text-shadow: 1px 1px rgba(0,0,0,.1);
     }
     p.success {
-        color: #83BD41; 
         margin-bottom: 10px;
         text-shadow: 1px 1px rgba(0,0,0,.1);
     }
@@ -70,7 +71,7 @@ form {
 		height: 30px;
         font-size: 14px;
         border-radius: 5px;
-        border: 1px solid #359a4c; 
-        background: #359a4c;
+        border: 1px solid @buttonBackground; 
+        background: @buttonBackground;
     }
 }
