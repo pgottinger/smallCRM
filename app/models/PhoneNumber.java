@@ -20,9 +20,9 @@ public class PhoneNumber extends Model {
 	private final PhoneCategory category;
 	private final String phoneNumber;
 
-	public PhoneNumber(UUID phoneId, PhoneCategory category, String phoneNumber) {
+	public PhoneNumber(PhoneCategory category, String phoneNumber) {
 		super();
-		this.phoneId = phoneId;
+		this.phoneId = UUID.randomUUID();
 		this.category = category;
 		this.phoneNumber = phoneNumber;
 	}

@@ -1,0 +1,34 @@
+@(clients: List[Client])
+
+@header()
+
+<div id="title">Klienten</div>
+
+<a href="/client/showCreateClientForm">Klienten anlegen</a>
+
+<table border="1">
+<tr>
+	<td>Name</td>
+	<td>Vorname</td>
+	<td>Geburtstag</td>
+	<td>Strasse</td>
+	<td>Hausnummer</td>
+	<td>PLZ</td>
+	<td>Ort</td>
+</tr>
+
+@for(client <- clients) {
+  <tr>	
+  	<td>client.getName()</td>
+	<td>client.getPreName()</td>
+	<td>client.getBirthday()</td>
+	<td>client.getStreet()</td>
+	<td>client.getStreetNumber()</td>
+	<td>client.getZipCode()</td>
+	<td>client.getCity()</td>
+  </tr>
+} 
+
+</table>
+
+@footer()

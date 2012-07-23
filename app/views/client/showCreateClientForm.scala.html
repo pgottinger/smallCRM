@@ -1,0 +1,50 @@
+@(form: Form[CreateClientForm])
+
+@header()
+
+<div id="title">Klienten anlegen</div>
+
+@helper.form(routes.ClientController.createClient) {
+            
+            <h1>Klienten anlegen</h1>
+            
+            @if(form.hasGlobalErrors) { 
+                <p class="error">
+                    @form.globalError.message
+                </p>
+            }
+            
+            @if(flash.contains("success")) {
+                <p class="success">
+                    @flash.get("success")
+                </p>
+            }
+            
+            <p>
+                <input type="name" name="name" placeholder="Name">
+            </p>
+            <p>
+                <input type="prename" name="prename" placeholder="Vorname">
+            </p>
+            <p>
+                <input type="birthday" name="birthday" placeholder="Geburtstag">
+            </p>
+            <p>
+                <input type="street" name="street" placeholder="Strasse">
+            </p>
+            <p>
+                <input type="streetnumber" name="streetNumber" placeholder="Hausnummer">
+            </p>
+            <p>
+                <input type="zipCode" name="zipCode" placeholder="Postleitzahl">
+            </p>
+            <p>
+                <input type="city" name="city" placeholder="Ort">
+            </p>
+            <p>
+                <button type="submit">Anlegen</button>
+            </p>
+            
+        }
+
+@footer()

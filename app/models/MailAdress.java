@@ -15,9 +15,9 @@ public class MailAdress extends Model {
 
 	private final String mailAdress;
 
-	public MailAdress(UUID mailId, String mailAdress) {
+	public MailAdress(String mailAdress) {
 		super();
-		this.mailId = mailId;
+		this.mailId = UUID.randomUUID();
 		this.mailAdress = mailAdress;
 	}
 }

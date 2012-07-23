@@ -13,6 +13,14 @@ GET		/logout						controllers.Login.logout()
 GET		/install					controllers.Installation.install()
 POST	/installSystem				controllers.Installation.installSystem()
 
+# == Client ==
+GET		/client/showCreateClientForm	controllers.ClientController.showCreateClientForm()
+POST	/client/createClient			controllers.ClientController.createClient()
+GET		/client/clientOverview			controllers.ClientController.clientOverview()
+
+
+# == Admin ==
+
 POST	/admin/createUser			controllers.UserAdmin.createUser()
 GET		/admin/showCreateUserForm	controllers.UserAdmin.showCreateUserForm()
 
