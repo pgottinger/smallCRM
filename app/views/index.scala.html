@@ -1,9 +1,7 @@
-@(message: String, user: User)
+@header()
 
-@header(user)
+<div id="title">&Uuml;bersicht</div>
 
-<div id="title">Klienten</div>
-
-@message
+Hallo @User.getLoggedInUser().getUserName()
 
 @footer()

@@ -6,13 +6,12 @@ import play.data.Form;
 import play.data.validation.Constraints.Required;
 import play.mvc.Controller;
 import play.mvc.Result;
-import play.mvc.Http.Context;
-import views.html.createUser;
+import views.html.admin.createUser;
 
 @AdminAuth
 public class UserAdmin extends Controller {
 
-	public static final String SHOW_CREATE_USER_FORM = "/showCreateUserForm";
+	public static final String SHOW_CREATE_USER_FORM = "/admin/showCreateUserForm";
 
 	public static class CreateUserForm {
 		protected static final String USERNAME_PASSWORD_AND_EMAIL_MUST_BE_FILLED = "Username, password and email must be filled!";
@@ -64,16 +63,14 @@ public class UserAdmin extends Controller {
 	}
 
 	public static Result showCreateUserForm() {
-		return ok(createUser.render(form(UserAdmin.CreateUserForm.class),
-				User.getLoggedInUser()));
+		return ok(createUser.render(form(UserAdmin.CreateUserForm.class)));
 	}
 
 	public static Result createUser() {
 		Form<CreateUserForm> createUserForm = form(CreateUserForm.class)
 				.bindFromRequest();
 		if (createUserForm.hasErrors()) {
-			return badRequest(createUser.render(createUserForm,
-					User.getLoggedInUser()));
+			return badRequest(createUser.render(createUserForm));
 		} else {
 			User newUser = new User(createUserForm);
 			newUser.save();

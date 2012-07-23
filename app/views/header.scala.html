@@ -1,4 +1,4 @@
-@(user: User)
+@(user: User=User.getLoggedInUser())
 <html>
 <head>
 <title>smallCRM</title>
@@ -20,4 +20,3 @@
 		<li><a href="/logout">Logout</a></li>
 	</ul>
 </div>
-<br/>

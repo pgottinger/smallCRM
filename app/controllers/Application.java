@@ -13,8 +13,6 @@ public class Application extends Controller {
 	public static Result index() {
 		User currentUser = User.getUserByName(Context.current().session()
 				.get("username"));
-		return ok(index.render("Your new application is ready, dude.",
-				currentUser));
+		return ok(index.render());
 	}
-
 }

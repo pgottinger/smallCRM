@@ -1,6 +1,6 @@
-@(form: Form[UserAdmin.CreateUserForm], user: User)
+@(form: Form[UserAdmin.CreateUserForm])
 
-@header(user)
+@header()
 <link rel="stylesheet" href="@routes.Assets.at("stylesheets/login.css")">
         @helper.form(routes.UserAdmin.createUser) {
             

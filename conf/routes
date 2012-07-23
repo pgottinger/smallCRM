@@ -13,8 +13,8 @@ GET		/logout						controllers.Login.logout()
 GET		/install					controllers.Installation.install()
 POST	/installSystem				controllers.Installation.installSystem()
 
-POST	/createUser					controllers.UserAdmin.createUser()
-GET		/showCreateUserForm			controllers.UserAdmin.showCreateUserForm()
+POST	/admin/createUser			controllers.UserAdmin.createUser()
+GET		/admin/showCreateUserForm	controllers.UserAdmin.showCreateUserForm()
 
 # Map static resources from the /public folder to the /public path
-GET     /assets/*file                       controllers.Assets.at(path="/public", file)
+GET     /assets/*file               controllers.Assets.at(path="/public", file)
