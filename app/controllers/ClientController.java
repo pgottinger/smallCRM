@@ -1,7 +1,11 @@
 package controllers;
 
+import java.util.List;
+import java.util.Map;
+
 import models.Client;
 import play.data.Form;
+import play.data.validation.ValidationError;
 import play.mvc.Controller;
 import play.mvc.Result;
 import views.html.login;
@@ -18,6 +22,8 @@ public class ClientController extends Controller {
 		Form<CreateClientForm> createClientForm = form(CreateClientForm.class)
 				.bindFromRequest();
 		if (createClientForm.hasErrors()) {
+			Map<String, List<ValidationError>> errors = createClientForm
+					.errors();
 			return badRequest(showCreateClientForm.render(createClientForm));
 		} else {
 			Client client = new Client(createClientForm);

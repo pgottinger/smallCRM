@@ -6,7 +6,6 @@ public class CreateClientForm {
 
 	public String name;
 	public String prename;
-	public Date birthday;
 	public String street;
 	public String streetNumber;
 	public String zipCode;
@@ -26,14 +25,6 @@ public class CreateClientForm {
 
 	public void setPrename(String prename) {
 		this.prename = prename;
-	}
-
-	public Date getBirthday() {
-		return birthday;
-	}
-
-	public void setBirthday(Date birthday) {
-		this.birthday = birthday;
 	}
 
 	public String getStreet() {
