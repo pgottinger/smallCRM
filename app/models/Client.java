@@ -79,7 +79,7 @@ public class Client extends Model {
 		this.clientId = UUID.randomUUID();
 		this.name = createClientForm.name;
 		this.prename = createClientForm.prename;
-		this.birthday = new Date();
+		this.birthday = createClientForm.birthday;
 		this.street = createClientForm.street;
 		this.streetNumber = createClientForm.streetNumber;
 		this.zipCode = createClientForm.zipCode;

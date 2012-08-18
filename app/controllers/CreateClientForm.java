@@ -2,10 +2,17 @@ package controllers;
 
 import java.util.Date;
 
+import play.data.format.Formats;
+import play.data.validation.Constraints.Required;
+
 public class CreateClientForm {
 
 	public String name;
 	public String prename;
+
+	@Required
+	@Formats.DateTime(pattern = "dd.MM.yyyy")
+	public Date birthday;
 	public String street;
 	public String streetNumber;
 	public String zipCode;
@@ -29,6 +36,14 @@ public class CreateClientForm {
 
 	public String getStreet() {
 		return street;
+	}
+
+	public void setBirthday(Date birthday) {
+		this.birthday = birthday;
+	}
+
+	public Date getBirthday() {
+		return birthday;
 	}
 
 	public void setStreet(String street) {
