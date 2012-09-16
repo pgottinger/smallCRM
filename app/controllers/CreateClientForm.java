@@ -17,6 +17,7 @@ public class CreateClientForm {
 	public String streetNumber;
 	public String zipCode;
 	public String city;
+	public String mail;
 
 	public String getName() {
 		return name;
@@ -72,6 +73,14 @@ public class CreateClientForm {
 
 	public void setCity(String city) {
 		this.city = city;
+	}
+
+	public void setMail(String mail) {
+		this.mail = mail;
+	}
+
+	public String getMail() {
+		return mail;
 	}
 
 }

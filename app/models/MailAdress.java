@@ -20,4 +20,8 @@ public class MailAdress extends Model {
 		this.mailId = UUID.randomUUID();
 		this.mailAdress = mailAdress;
 	}
+
+	public String getMail() {
+		return mailAdress;
+	}
 }

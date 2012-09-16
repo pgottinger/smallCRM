@@ -15,6 +15,7 @@
 	<td>Hausnummer</td>
 	<td>PLZ</td>
 	<td>Ort</td>
+	<td>E-Mail</td>
 </tr>
 
 @for(client <- clients) {
@@ -26,6 +27,7 @@
 	<td>@client.getStreetNumber()</td>
 	<td>@client.getZipCode()</td>
 	<td>@client.getCity()</td>
+	<td>@client.getMails().iterator.next().getMail()</td>
   </tr>
 } 
 

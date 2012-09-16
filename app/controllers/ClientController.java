@@ -4,13 +4,13 @@ import java.util.List;
 import java.util.Map;
 
 import models.Client;
+import models.MailAdress;
 import play.data.Form;
 import play.data.validation.ValidationError;
 import play.mvc.Controller;
 import play.mvc.Result;
-import views.html.login;
-import views.html.client.showCreateClientForm;
 import views.html.client.clientOverview;
+import views.html.client.showCreateClientForm;
 
 public class ClientController extends Controller {
 
@@ -26,7 +26,8 @@ public class ClientController extends Controller {
 					.errors();
 			return badRequest(showCreateClientForm.render(createClientForm));
 		} else {
-			Client client = new Client(createClientForm);
+			MailAdress mail = new MailAdress(createClientForm.get().getMail());
+			Client client = new Client(createClientForm, mail);
 			client.save();
 
 			return redirect(routes.Application.index());

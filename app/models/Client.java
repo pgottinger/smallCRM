@@ -7,6 +7,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
@@ -32,8 +33,8 @@ public class Client extends Model {
 	// @OneToMany
 	// private final Collection<PhoneNumber> phones;
 	//
-	// @OneToMany
-	// private final Collection<MailAdress> mails;
+	@OneToMany(cascade = CascadeType.ALL)
+	private final List<MailAdress> mails = new ArrayList<MailAdress>();
 
 	private final String diseases;
 	private final String biography;
@@ -73,7 +74,7 @@ public class Client extends Model {
 		this.createdOn = createdOn;
 	}
 
-	public Client(Form<CreateClientForm> form) {
+	public Client(Form<CreateClientForm> form, MailAdress mail) {
 		CreateClientForm createClientForm = form.get();
 
 		this.clientId = UUID.randomUUID();
@@ -93,8 +94,8 @@ public class Client extends Model {
 		//
 		// MailAdress mail = new MailAdress("peter@test.de");
 		// mail.save();
-		// Collection<MailAdress> mails = new ArrayList<MailAdress>();
-		// mails.add(mail);
+
+		mails.add(mail);
 		//
 		// this.phones = phoneNumbers;
 		// this.mails = mails;
@@ -146,9 +147,9 @@ public class Client extends Model {
 	// return phones;
 	// }
 	//
-	// public Collection<MailAdress> getMails() {
-	// return mails;
-	// }
+	public Collection<MailAdress> getMails() {
+		return mails;
+	}
 
 	public String getDiseases() {
 		return diseases;
