@@ -30,7 +30,7 @@ public class ClientController extends Controller {
 			Client client = new Client(createClientForm, mail);
 			client.save();
 
-			return redirect(routes.Application.index());
+			return redirect(routes.ClientController.clientOverview());
 		}
 	}
 

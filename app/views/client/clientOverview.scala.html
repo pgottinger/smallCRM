@@ -3,34 +3,30 @@
 @header()
 
 <div id="title">Klienten</div>
-
-<a href="/client/showCreateClientForm">Klienten anlegen</a>
-
-<table border="1">
+<div id="button"><a href="/client/showCreateClientForm">Klienten anlegen</a></div>
+<br/>
+<table>
 <tr>
-	<td>Name</td>
-	<td>Vorname</td>
-	<td>Geburtstag</td>
-	<td>Strasse</td>
-	<td>Hausnummer</td>
-	<td>PLZ</td>
-	<td>Ort</td>
-	<td>E-Mail</td>
+	<td id="header" width="218">Name</td>
+	<td id="header" width="164">Vorname</td>
+	<td id="header" width="90">Geburtstag</td>
+	<td id="header" width="248">Strasse</td>
+	<td id="header" width="50">PLZ</td>
+	<td id="header" width="238">Ort</td>
+	<td id="header" width="144">E-Mail</td>
 </tr>
 
 @for(client <- clients) {
   <tr>	
-  	<td>@client.getName()</td>
-	<td>@client.getPrename()</td>
-	<td>@client.getBirthday().format("dd.MM.yyyy")</td>
-	<td>@client.getStreet()</td>
-	<td>@client.getStreetNumber()</td>
-	<td>@client.getZipCode()</td>
-	<td>@client.getCity()</td>
-	<td>@client.getMails().iterator.next().getMail()</td>
+  	<td id="content">@client.getName()</td>
+	<td id="content">@client.getPrename()</td>
+	<td id="content">@client.getBirthday().format("dd.MM.yyyy")</td>
+	<td id="content">@client.getStreet() @client.getStreetNumber()</td>
+	<td id="content">@client.getZipCode()</td>
+	<td id="content">@client.getCity()</td>
+	<td id="content">@client.getMails().iterator.next().getMail()</td>
   </tr>
 } 
 
 </table>
-
 @footer()

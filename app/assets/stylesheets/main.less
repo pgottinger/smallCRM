@@ -75,7 +75,7 @@ div#footer {
 
 div#content {
 	margin:auto;
-	width: 1280px;
+	width: 1200px;
 	height: 100%;
 	background: @contentBackground;
 	border: 1px solid @titleBackground;
@@ -91,4 +91,44 @@ div#title {
   margin-top: 20px;
   margin-bottom: 20px;
   background: @footerBackground;
+}
+
+table {
+  margin: auto;
+  background: @tableBackground;
+  width: 1150px;
+  position: relative;
+  top: 0px;
+}
+
+td#header {
+  background: @tableHeaderBackground;
+  color: @tableHeaderColor;
+  text-align: center;
+  padding: 2px;
+}
+
+td#content {
+  background: @tableContentBackground;
+  color: @tableColor;
+  padding: 2px;
+}
+
+div#button {
+ position: relative;
+ top: 0px;
+ left: 1050px;
+}
+
+div#button a {
+ color: @menuColor;
+ padding: 10px;
+ border-radius: 5px;
+ background: @menuBackground;
+ text-decoration:none;
+}
+
+div#button a:hover {
+  color: @menuColorHover;
+  background: @menuBackgroundHover;
 }

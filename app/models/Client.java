@@ -108,7 +108,7 @@ public class Client extends Model {
 	}
 
 	public static List<Client> getAllClients() {
-		return findById.all();
+		return findById.order("name").order("prename").findList();
 	}
 
 	public UUID getClientId() {
