@@ -8,10 +8,8 @@
             
             <h1>Klienten anlegen</h1>
             
-            @if(form.hasGlobalErrors) { 
-                <p class="error">
-                    @form.globalError.message
-                </p>
+            @if(form.hasErrors) { 
+                <p id="error">Bitte Eingaben pr&uuml;fen!</p>
             }
             
             @if(flash.contains("success")) {
@@ -20,6 +18,13 @@
                 </p>
             }
             
+            
+            <p>
+                <input type="formOfAdress" name="formOfAdress" placeholder="Anrede">
+            </p>
+            <p>
+                <input type="title" name="title" placeholder="Titel">
+            </p>
             <p>
                 <input type="name" name="name" placeholder="Name">
             </p>
@@ -28,6 +33,24 @@
             </p>
               <p>
                 <input type="birthday" name="birthday" placeholder="Geburtsdatum">
+            </p>
+            <p>
+                <input type="birthplace" name="birthplace" placeholder="Geburtsort">
+            </p>
+            <p>
+                <input type="birthcountry" name="birthcountry" placeholder="Geburtsland">
+            </p>
+            <p>
+                <input type="gender" name="gender" placeholder="Geschlecht">
+            </p>
+            <p>
+                <input type="familyStatus" name="familyStatus" placeholder="Familienstatus">
+            </p>
+            <p>
+                <input type="occupation" name="occupation" placeholder="Beruf">
+            </p>
+            <p>
+                <input type="confession" name="confession" placeholder="Konfession">
             </p>
             <p>
                 <input type="street" name="street" placeholder="Strasse">
@@ -44,6 +67,14 @@
             <p>
                 <input type="mail" name="mail" placeholder="E-Mail">
             </p>
+            <p>
+                <input type="phone" name="phone" placeholder="Telefon">
+            </p>
+            <p>
+                <input type="mobile" name="mobile" placeholder="Mobiltelefon">
+            </p>
+            
+            
             <p>
                 <button type="submit">Anlegen</button>
             </p>

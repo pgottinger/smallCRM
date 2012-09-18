@@ -13,6 +13,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
 import play.data.Form;
+import play.data.validation.Constraints.Required;
 import play.db.ebean.Model;
 import controllers.CreateClientForm;
 
@@ -22,26 +23,30 @@ public class Client extends Model {
 	@Id
 	private final UUID clientId;
 
+	private String formOfAdress;
+	private String title;
 	private final String name;
 	private final String prename;
+
 	private final Date birthday;
+	private String birthplace;
+
+	private String birthCountry;
+	private String gender;
+	private String familyStatus;
+	private String occupation;
+	private String confession;
+
 	private final String street;
 	private final String streetNumber;
 	private final String zipCode;
 	private final String city;
 
-	// @OneToMany
-	// private final Collection<PhoneNumber> phones;
-	//
+	@OneToMany(cascade = CascadeType.ALL)
+	private final List<PhoneNumber> phones = new ArrayList<PhoneNumber>();
+
 	@OneToMany(cascade = CascadeType.ALL)
 	private final List<MailAdress> mails = new ArrayList<MailAdress>();
-
-	private final String diseases;
-	private final String biography;
-
-	private final Date custodyStart;
-	private final String custodyDemandedBy;
-	private final Date custodyRequestDate;
 
 	private final Date createdOn;
 
@@ -51,30 +56,8 @@ public class Client extends Model {
 	public static Model.Finder<UUID, Client> findById = new Model.Finder(
 			UUID.class, Client.class);
 
-	public Client(String name, String prename, Date birthday, String street,
-			String streetNumber, String zipCode, String city,
-			Collection<PhoneNumber> phones, Collection<MailAdress> mails,
-			String diseases, String biography, Date custodyStart,
-			String custodyDemandedBy, Date custodyRequestDate, Date createdOn) {
-		this.clientId = UUID.randomUUID();
-		this.name = name;
-		this.prename = prename;
-		this.birthday = birthday;
-		this.street = street;
-		this.streetNumber = streetNumber;
-		this.zipCode = zipCode;
-		this.city = city;
-		// this.phones = phones;
-		// this.mails = mails;
-		this.diseases = diseases;
-		this.biography = biography;
-		this.custodyStart = custodyStart;
-		this.custodyDemandedBy = custodyDemandedBy;
-		this.custodyRequestDate = custodyRequestDate;
-		this.createdOn = createdOn;
-	}
-
-	public Client(Form<CreateClientForm> form, MailAdress mail) {
+	public Client(Form<CreateClientForm> form, MailAdress mail,
+			PhoneNumber phone, PhoneNumber mobile) {
 		CreateClientForm createClientForm = form.get();
 
 		this.clientId = UUID.randomUUID();
@@ -86,24 +69,10 @@ public class Client extends Model {
 		this.zipCode = createClientForm.zipCode;
 		this.city = createClientForm.city;
 
-		// PhoneNumber phoneNumber = new PhoneNumber(PhoneCategory.PRIVATE,
-		// "04711 2234");
-		// phoneNumber.save();
-		// Collection<PhoneNumber> phoneNumbers = new ArrayList<PhoneNumber>();
-		// phoneNumbers.add(phoneNumber);
-		//
-		// MailAdress mail = new MailAdress("peter@test.de");
-		// mail.save();
-
+		phones.add(phone);
+		phones.add(mobile);
 		mails.add(mail);
-		//
-		// this.phones = phoneNumbers;
-		// this.mails = mails;
-		this.diseases = "empty";
-		this.biography = "empty";
-		this.custodyStart = new Date();
-		this.custodyDemandedBy = "empty";
-		this.custodyRequestDate = new Date();
+
 		this.createdOn = new Date();
 	}
 
@@ -143,36 +112,47 @@ public class Client extends Model {
 		return city;
 	}
 
-	// public Collection<PhoneNumber> getPhones() {
-	// return phones;
-	// }
-	//
 	public Collection<MailAdress> getMails() {
 		return mails;
 	}
 
-	public String getDiseases() {
-		return diseases;
+	public String getFormOfAdress() {
+		return formOfAdress;
 	}
 
-	public String getBiography() {
-		return biography;
+	public String getTitle() {
+		return title;
 	}
 
-	public Date getCustodyStart() {
-		return custodyStart;
+	public String getBirthplace() {
+		return birthplace;
 	}
 
-	public String getCustodyDemandedBy() {
-		return custodyDemandedBy;
+	public String getBirthCountry() {
+		return birthCountry;
 	}
 
-	public Date getCustodyRequestDate() {
-		return custodyRequestDate;
+	public String getGender() {
+		return gender;
+	}
+
+	public String getFamilyStatus() {
+		return familyStatus;
+	}
+
+	public String getOccupation() {
+		return occupation;
+	}
+
+	public String getConfession() {
+		return confession;
+	}
+
+	public List<PhoneNumber> getPhones() {
+		return phones;
 	}
 
 	public Date getCreatedOn() {
 		return createdOn;
 	}
-
 }

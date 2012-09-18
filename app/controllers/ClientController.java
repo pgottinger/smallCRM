@@ -5,6 +5,8 @@ import java.util.Map;
 
 import models.Client;
 import models.MailAdress;
+import models.PhoneNumber;
+import models.PhoneNumber.PhoneCategory;
 import play.data.Form;
 import play.data.validation.ValidationError;
 import play.mvc.Controller;
@@ -26,12 +28,42 @@ public class ClientController extends Controller {
 					.errors();
 			return badRequest(showCreateClientForm.render(createClientForm));
 		} else {
-			MailAdress mail = new MailAdress(createClientForm.get().getMail());
-			Client client = new Client(createClientForm, mail);
+			MailAdress mail = createMailEntity(createClientForm);
+			PhoneNumber phoneNumber = createPhoneEntity(createClientForm);
+			PhoneNumber mobileNumber = createMobileEntity(createClientForm);
+			Client client = new Client(createClientForm, mail, phoneNumber,
+					mobileNumber);
 			client.save();
 
 			return redirect(routes.ClientController.clientOverview());
 		}
+	}
+
+	private static MailAdress createMailEntity(
+			Form<CreateClientForm> createClientForm) {
+		String mail = createClientForm.get().getMail();
+		if (mail != null) {
+			return new MailAdress(mail);
+		}
+		return null;
+	}
+
+	private static PhoneNumber createPhoneEntity(
+			Form<CreateClientForm> createClientForm) {
+		String phone = createClientForm.get().getPhone();
+		if (phone != null) {
+			return new PhoneNumber(PhoneCategory.PHONE, phone);
+		}
+		return null;
+	}
+
+	private static PhoneNumber createMobileEntity(
+			Form<CreateClientForm> createClientForm) {
+		String mobile = createClientForm.get().getPhone();
+		if (mobile != null) {
+			return new PhoneNumber(PhoneCategory.MOBILE, mobile);
+		}
+		return null;
 	}
 
 	public static Result clientOverview() {
