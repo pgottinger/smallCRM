@@ -374,6 +374,12 @@ Full-Width Styles
   background: #212121;
 }
 
+#cloudbees {
+	background:url(http://www.cloudbees.com/sites/default/files/Button-Built-on-CB-1.png);
+	width: 209px;
+	height: 72px;
+	
+}
 
 
 /*******************************************************************************
