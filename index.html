@@ -36,17 +36,33 @@
 	<!-- MAIN CONTENT -->
 	<div id="main_content_wrap" class="outer">
 		<section id="main_content" class="inner">
-			<h3>Welcome to smallCRM.</h3>
+			<div id="main-left">
+				<h3>Welcome to smallCRM.</h3>
 
-			<ul>
-				<li><a href="https://github.com/pgottinger/smallCRM/tree/master" target="_blank">Release branch</a></li>
-				<li><a href="https://github.com/pgottinger/smallCRM/tree/dev" target="_blank">Development branch</a></li>
-				<li><a href="https://github.com/pgottinger/smallCRM/issues?state=open" target="_blank">Issue tracker</a></li>
-				<li><a href="https://smallcrm.ci.cloudbees.com/" target="_blank">Jenkins build @ CloudBees</a></li>
-				<li><a href="https://github.com/pgottinger/smallCRM/wiki" target="_blank">Documentation</a></li>
-			</ul>
+				<ul>
+					<li><a
+						href="https://github.com/pgottinger/smallCRM/tree/master"
+						target="_blank">Release branch</a></li>
+					<li><a href="https://github.com/pgottinger/smallCRM/tree/dev"
+						target="_blank">Development branch</a></li>
+					<li><a
+						target="_blank">Issue tracker</a></li>
+						href="https://github.com/pgottinger/smallCRM/issues?state=open"
+					<li><a href="https://pgottinger.ci.cloudbees.com/"
+						target="_blank">Jenkins build @ CloudBees</a></li>
+					<li><a href="https://github.com/pgottinger/smallCRM/wiki"
+						target="_blank">Documentation</a></li>
+				</ul>
+			</div>
+			<div id="main-right">
+				<h4>Jenkins build status</h4>
+				<h5>Stable branch</h5>
+				<a href='https://smallcrm.ci.cloudbees.com/job/smallCRM-stable/' target="_blank"><img src='https://smallcrm.ci.cloudbees.com/job/smallCRM-stable/badge/icon' border="0"></a>
+				
+				<h5>Dev branch</h5>
+				<a href='https://smallcrm.ci.cloudbees.com/job/smallCRM-dev/' target="_blank"><img src='https://smallcrm.ci.cloudbees.com/job/smallCRM-dev/badge/icon'></a>
+			</div>
 
-			<a id="cloudbees" href="http://www.cloudbees.com/foss" target="_blank"></a>
 		</section>
 	</div>
 
@@ -61,8 +77,9 @@
 			</p>
 		</footer>
 	</div>
-
-
-
+	<div id="banner">
+	<a href="http://www.cloudbees.com/foss" target="_blank"><img src="http://www.cloudbees.com/sites/default/files/Button-Built-on-CB-1.png" border="0"/></a>
+	<a href="http://playframework.org" target="_blank"><img src="http://www.playframework.org/assets/images/logo-footer.png" border="0" /></a>
+	</div>
 </body>
 </html>

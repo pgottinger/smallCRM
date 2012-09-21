@@ -151,13 +151,6 @@ img {
   max-width: 739px;
   padding: 5px;
   margin: 10px 0 10px 0;
-  border: 1px solid #ebebeb;
-
-  box-shadow: 0 0 5px #ebebeb;
-  -webkit-box-shadow: 0 0 5px #ebebeb;
-  -moz-box-shadow: 0 0 5px #ebebeb;
-  -o-box-shadow: 0 0 5px #ebebeb;
-  -ms-box-shadow: 0 0 5px #ebebeb;
 }
 
 pre, code {
@@ -259,11 +252,6 @@ form {
   padding: 20px;
 }
 
-img {
-  width: 100%;
-  max-width: 100%;
-}
-
 /*******************************************************************************
 Full-Width Styles
 *******************************************************************************/
@@ -290,7 +278,7 @@ Full-Width Styles
   background: url('../images/blacktocat.png') #FF8C00 no-repeat 95% 50%;
   font-weight: 700;
   box-shadow: 0 0 10px rgba(0,0,0,.5);
-  border: solid 1px #000000;
+  border: solid 1px #ffffff;
   border-bottom-left-radius: 5px;
   border-bottom-right-radius: 5px;
 }
@@ -364,19 +352,31 @@ Full-Width Styles
 }
 
 #main_content {
-  padding-top: 40px;
+  min-height: 400px;
+  padding-top: 100px;
+}
+
+#main-left {
+	float: left;
+	width: 400px;
+}
+
+#main-right {
+	float: right;
+	width: 240px;
+	text-align: right;
 }
 
 #footer_wrap {
   background: #359A4C;
 }
 
-#cloudbees {
-	display: block;
-	background:url(http://www.cloudbees.com/sites/default/files/Button-Built-on-CB-1.png);
-	width: 209px;
-	height: 72px;
-	
+#banner {
+  position: relative;
+  max-width: 640px;
+  padding: 20px 10px;
+  margin: 0 auto;
+  text-align: center;
 }
 
 
@@ -394,8 +394,8 @@ Small Device Styles
   }
 
   .inner {
-    min-width: 320px;
-    max-width: 480px;
+    min-width: 480px;
+    max-width: 640px;
   }
 
   #project_title {
