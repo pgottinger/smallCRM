@@ -77,7 +77,6 @@ public class ClientControllerTest {
 		assertClientData(allClients.get(0));
 	}
 
-	@Ignore("Problem with having no phone number. This has to be fixed!")
 	@Test
 	public void testCreateClientWithoutPhoneNumber() {
 		Map<String, String> formData = createFormData();
@@ -86,7 +85,6 @@ public class ClientControllerTest {
 		assertThat(Client.getAllClients().size(), is(1));
 	}
 
-	@Ignore("Problem with having no mobile number. This has to be fixed!")
 	@Test
 	public void testCreateClientWithoutMobileNumber() {
 		Map<String, String> formData = createFormData();
@@ -95,7 +93,6 @@ public class ClientControllerTest {
 		assertThat(Client.getAllClients().size(), is(1));
 	}
 
-	@Ignore("Problem with having no mail. This has to be fixed!")
 	@Test
 	public void testCreateClientWithoutMail() {
 		Map<String, String> formData = createFormData();

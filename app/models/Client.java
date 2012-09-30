@@ -89,9 +89,17 @@ public class Client extends Model {
 		this.occupation = form.occupation;
 		this.confession = form.confession;
 
-		phones.add(phone);
-		phones.add(mobile);
-		mails.add(mail);
+		if (phone != null) {
+			phones.add(phone);
+		}
+
+		if (mobile != null) {
+			phones.add(mobile);
+		}
+
+		if (mail != null) {
+			mails.add(mail);
+		}
 
 		this.createdOn = new Date();
 	}
