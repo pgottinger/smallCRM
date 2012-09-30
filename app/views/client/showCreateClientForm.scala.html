@@ -5,9 +5,7 @@
 <div id="title">Klienten anlegen</div>
 
 @helper.form(routes.ClientController.createClient) {
-            
-            <h1>Klienten anlegen</h1>
-            
+                       
             @if(form.hasErrors) { 
                 <p id="error">Bitte Eingaben pr&uuml;fen!</p>
             }
@@ -18,67 +16,97 @@
                 </p>
             }
             
+            <div id="formboxes-left">
+            	<div id="formbox">
+            		<div id="formbox-title">Grunddaten</div>
+            		<div id="formbox-content"> 
+			            <p>
+			                Anrede: <select type="formOfAdress" name="formOfAdress" class="formelement">
+			                	<option value="Herr">Herr</option>
+			                	<option value="Frau">Frau</option>
+			                </select>
+			            </p>
+			            <p>
+			                Titel: <input type="title" name="title" class="formelement">
+			            </p>
+			            <p>
+			                Name: <input type="name" name="name" class="formelement">
+			            </p>
+			            <p>
+			                Vorname: <input type="prename" name="prename" class="formelement">
+			            </p>
+			              <p>
+			                Geburtsdatum: <input type="birthday" name="birthday" class="formelement">
+			            </p>
+			            <p>
+			                Geburtsort: <input type="birthplace" name="birthplace" class="formelement">
+			            </p>
+			            <p>
+			                Geburtsland: <input type="birthcountry" name="birthcountry" class="formelement">
+			            </p>
+			            <p>
+			                Geschlecht: <select type="gender" name="gender" class="formelement">
+			                	<option value="m&auml;nnlich">m&auml;nnlich</option>
+			                	<option value="weiblich">weiblich</option>
+			                </select>
+			            </p>
+				        <p>
+	                		Familienstatus: <select type="familyStatus" name="familyStatus" class="formelement">
+	                			<option value="ledig">ledig</option>
+	                			<option value="verheiratet">verheiratet</option>
+	                			<option value="geschieden">geschieden</option>
+	                			<option value="verwitwet">verwitwet</option>
+	                			<option value="sonstiges">sonstiges</option>
+	                		</select>
+	            		</p>
+	            		<p>
+	                		Beruf: <input type="occupation" name="occupation" class="formelement">
+	            		</p>
+	            		<p>
+	                		Konfession:<select type="confession" name="confession" class="formelement">
+			                	<option value="katholisch">katholisch</option>
+			                	<option value="evangelisch">evangelisch</option>
+			                	<option value="muslimisch">muslimisch</option>
+			                	<option value="konfessionslos">konfessionslos</option>
+			                	<option value="sonstiges">sonstiges</option>
+			                </select>
+	            		</p>
+            		</div>
+            	</div>
+            	<br/>
+            	<p>
+                	<button type="submit">Klienten anlegen</button>
+            	</p>
+            </div>
             
-            <p>
-                <input type="formOfAdress" name="formOfAdress" placeholder="Anrede">
-            </p>
-            <p>
-                <input type="title" name="title" placeholder="Titel">
-            </p>
-            <p>
-                <input type="name" name="name" placeholder="Name">
-            </p>
-            <p>
-                <input type="prename" name="prename" placeholder="Vorname">
-            </p>
-              <p>
-                <input type="birthday" name="birthday" placeholder="Geburtsdatum">
-            </p>
-            <p>
-                <input type="birthplace" name="birthplace" placeholder="Geburtsort">
-            </p>
-            <p>
-                <input type="birthcountry" name="birthcountry" placeholder="Geburtsland">
-            </p>
-            <p>
-                <input type="gender" name="gender" placeholder="Geschlecht">
-            </p>
-            <p>
-                <input type="familyStatus" name="familyStatus" placeholder="Familienstatus">
-            </p>
-            <p>
-                <input type="occupation" name="occupation" placeholder="Beruf">
-            </p>
-            <p>
-                <input type="confession" name="confession" placeholder="Konfession">
-            </p>
-            <p>
-                <input type="street" name="street" placeholder="Strasse">
-            </p>
-            <p>
-                <input type="streetnumber" name="streetNumber" placeholder="Hausnummer">
-            </p>
-            <p>
-                <input type="zipCode" name="zipCode" placeholder="Postleitzahl">
-            </p>
-            <p>
-                <input type="city" name="city" placeholder="Ort">
-            </p>
-            <p>
-                <input type="mail" name="mail" placeholder="E-Mail">
-            </p>
-            <p>
-                <input type="phone" name="phone" placeholder="Telefon">
-            </p>
-            <p>
-                <input type="mobile" name="mobile" placeholder="Mobiltelefon">
-            </p>
-            
-            
-            <p>
-                <button type="submit">Anlegen</button>
-            </p>
-            
+            <div id="formboxes-right">
+            	<div id="formbox">
+            		<div id="formbox-title">Kontaktdaten</div>
+            		<div id="formbox-content">
+			            <p>
+			                Strasse: <input type="street" name="street" class="formelement">
+			            </p>
+			            <p>
+			                Hausnummer: <input type="streetnumber" name="streetNumber" class="formelement">
+			            </p>
+			            <p>
+			                Postleitzahl: <input type="zipCode" name="zipCode" class="formelement">
+			            </p>
+			            <p>
+			                Ort: <input type="city" name="city" class="formelement">
+			            </p>
+			            <p>
+			                Telefon: <input type="phone" name="phone" class="formelement">
+			            </p>
+			            <p>
+			                Mobiltelefon: <input type="mobile" name="mobile" class="formelement">
+			            </p>
+			            <p>
+			                E-Mail: <input type="mail" name="mail" class="formelement">
+			            </p>
+		            </div>
+            	</div>
+            </div>
         }
 
 @footer()

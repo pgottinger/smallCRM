@@ -1,5 +1,7 @@
 package models;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -12,6 +14,8 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import models.PhoneNumber.PhoneCategory;
+
 import play.data.Form;
 import play.data.validation.Constraints.Required;
 import play.db.ebean.Model;
@@ -23,19 +27,19 @@ public class Client extends Model {
 	@Id
 	private final UUID clientId;
 
-	private String formOfAdress;
-	private String title;
+	private final String formOfAdress;
+	private final String title;
 	private final String name;
 	private final String prename;
 
 	private final Date birthday;
-	private String birthplace;
+	private final String birthplace;
 
-	private String birthCountry;
-	private String gender;
-	private String familyStatus;
-	private String occupation;
-	private String confession;
+	private final String birthCountry;
+	private final String gender;
+	private final String familyStatus;
+	private final String occupation;
+	private final String confession;
 
 	private final String street;
 	private final String streetNumber;
@@ -56,18 +60,29 @@ public class Client extends Model {
 	public static Model.Finder<UUID, Client> findById = new Model.Finder(
 			UUID.class, Client.class);
 
-	public Client(Form<CreateClientForm> form, MailAdress mail,
+	public Client(Form<CreateClientForm> clientForm, MailAdress mail,
 			PhoneNumber phone, PhoneNumber mobile) {
-		CreateClientForm createClientForm = form.get();
+		CreateClientForm form = clientForm.get();
 
 		this.clientId = UUID.randomUUID();
-		this.name = createClientForm.name;
-		this.prename = createClientForm.prename;
-		this.birthday = createClientForm.birthday;
-		this.street = createClientForm.street;
-		this.streetNumber = createClientForm.streetNumber;
-		this.zipCode = createClientForm.zipCode;
-		this.city = createClientForm.city;
+		this.formOfAdress = form.formOfAdress;
+		this.title = form.title;
+
+		this.name = form.name;
+		this.prename = form.prename;
+		this.birthday = form.birthday;
+		this.street = form.street;
+		this.streetNumber = form.streetNumber;
+		this.zipCode = form.zipCode;
+		this.city = form.city;
+
+		this.birthplace = form.birthplace;
+
+		this.birthCountry = form.birthCountry;
+		this.gender = form.gender;
+		this.familyStatus = form.getFamilyStatus();
+		this.occupation = form.occupation;
+		this.confession = form.confession;
 
 		phones.add(phone);
 		phones.add(mobile);
@@ -78,6 +93,10 @@ public class Client extends Model {
 
 	public static List<Client> getAllClients() {
 		return findById.order("name").order("prename").findList();
+	}
+
+	public static Client getClientById(UUID clientId) {
+		return findById.where().eq("clientId", clientId).findUnique();
 	}
 
 	public UUID getClientId() {
@@ -94,6 +113,11 @@ public class Client extends Model {
 
 	public Date getBirthday() {
 		return birthday;
+	}
+
+	public String getBirthdayAsString() {
+		DateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy");
+		return dateFormat.format(birthday);
 	}
 
 	public String getStreet() {
@@ -149,10 +173,25 @@ public class Client extends Model {
 	}
 
 	public List<PhoneNumber> getPhones() {
-		return phones;
+		return getPhoneNumbersOfCategory(PhoneCategory.PHONE);
+	}
+
+	public List<PhoneNumber> getMobiles() {
+		return getPhoneNumbersOfCategory(PhoneCategory.MOBILE);
+	}
+
+	private List<PhoneNumber> getPhoneNumbersOfCategory(PhoneCategory category) {
+		List<PhoneNumber> phoneList = new ArrayList<PhoneNumber>();
+		for (PhoneNumber phoneNumber : phones) {
+			if (phoneNumber.getCategory() == category) {
+				phoneList.add(phoneNumber);
+			}
+		}
+		return phoneList;
 	}
 
 	public Date getCreatedOn() {
 		return createdOn;
 	}
+
 }

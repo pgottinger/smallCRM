@@ -17,6 +17,7 @@ POST	/installSystem				controllers.Installation.installSystem()
 GET		/client/showCreateClientForm	controllers.ClientController.showCreateClientForm()
 POST	/client/createClient			controllers.ClientController.createClient()
 GET		/client/clientOverview			controllers.ClientController.clientOverview()
+GET		/client/showClient/:clientId	controllers.ClientController.showClient(clientId: String)
 
 
 # == Admin ==

@@ -14,8 +14,8 @@ body {
 
 div#menu {
   font-size: 16px;
-  padding-right: 5px; 
   float: right;
+  margin-right: 30px; 
 }
 
 div#messagebadge {
@@ -64,7 +64,7 @@ ul#menu {
 div#footer {
   color: @footerColor;
   font-size: 10px;
-  position: absolute;
+  position: relative;
   bottom: 0px;
   border: 0;
   text-align:center;
@@ -77,7 +77,7 @@ div#footer {
 div#content {
 	margin:auto;
 	width: 1200px;
-	min-height: 100%;
+	min-height: 600px;
 	background: @contentBackground;
 	border: 1px solid @titleBackground;
 	border-radius: 5px;
@@ -118,25 +118,53 @@ td#content {
   background: @tableContentBackground;
   color: @tableColor;
   padding: 2px;
-  font-size: 12;
+  font-size: 14;
 }
 
-div#button {
- position: relative;
- float: right;
- top: 0px;
- right: 30px;
+div#formboxes-left {
+  float: left;
+  margin-left: 30px;
 }
 
-div#button a {
- color: @menuColor;
- padding: 10px;
- border-radius: 5px;
- background: @menuBackground;
- text-decoration:none;
+div#formboxes-right {
+  float: right;
+  margin-right: 30px;
 }
 
-div#button a:hover {
-  color: @menuColorHover;
-  background: @menuBackgroundHover;
+
+div#formbox {
+  font-size: 18;
+  background-color: @formboxBackground;
+  width: 500px;
+  border-radius: 5px;
+  border: 1px solid @titleBackground;
+}
+
+div#formbox-title {
+  background-color: @titleBackground;
+  padding-left: 10px;
+  color: @titleColor;
+}
+
+div#formbox-content {
+  padding: 10px;
+}
+
+.formelement {
+  float: right;
+}
+
+button {
+  min-width:80px;
+  min-height: 30px;
+  font-size: 14px;
+  border-radius: 5px;
+  border: 1px solid @buttonBackground; 
+  background: @buttonBackground;
+  color: @buttonColor;
+  padding: 5px;
+}
+
+div#buttons {
+  text-align:center;
 }

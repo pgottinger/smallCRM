@@ -1,0 +1,116 @@
+@(client: Client)
+
+@header()
+
+<div id="title">@client.getPrename() @client.getName()</div>
+
+<div id="menu">
+	<ul id="menu">
+	<li><a href="#">Klient bearbeiten</a></li>
+	<li><a href="#">Kontakte</a></li>
+	<li><a href="#">Listen</a></li>
+	</ul>
+</div>
+
+<br/><br/>
+
+<div id="formboxes-left">
+            	<div id="formbox">
+            		<div id="formbox-title">Grunddaten</div>
+            		<div id="formbox-content"> 
+			            <p>
+			                Anrede: <i class="formelement">@client.getFormOfAdress()</i>
+			            </p>
+			            <p>
+			                Titel: <i class="formelement">@client.getTitle()</i>
+			            </p>
+			            <p>
+			                Name: <i class="formelement">@client.getName()</i>
+			            </p>
+			            <p>
+			                Vorname: <i class="formelement">@client.getPrename()</i>
+			            </p>
+			              <p>
+			                Geburtsdatum: <i class="formelement">@client.getBirthdayAsString()</i>
+			            </p>
+			            <p>
+			                Geburtsort: <i class="formelement">@client.getBirthplace()</i>
+			            </p>
+			            <p>
+			                Geburtsland: <i class="formelement">@client.getBirthCountry()</i>
+			            </p>
+			            <p>
+			                Geschlecht: <i class="formelement">@client.getGender()</i>
+			            </p>
+				        <p>
+	                		Familienstatus: <i class="formelement">@client.getFamilyStatus()</i>
+	            		</p>
+	            		<p>
+	                		Beruf: <i class="formelement">@client.getOccupation()</i>
+	            		</p>
+	            		<p>
+	                		Konfession:<i class="formelement">@client.getConfession()</i>
+	            		</p>
+            		</div>
+            	</div>
+            	<br/>
+            </div>
+            
+            <div id="formboxes-right">
+            	<div id="formbox">
+            		<div id="formbox-title">Kontaktdaten</div>
+            		<div id="formbox-content">
+			            <p>
+			                Strasse: <i class="formelement">@client.getStreet()</i>
+			            </p>
+			            <p>
+			                Hausnummer: <i class="formelement">@client.getStreetNumber()</i>
+			            </p>
+			            <p>
+			                Postleitzahl: <i class="formelement">@client.getZipCode()</i>
+			            </p>
+			            <p>
+			                Ort: <i class="formelement">@client.getCity()</i>
+			            </p>
+			            <div>
+			                Telefon: 
+			                <i class="formelement">
+			                @if(!client.getPhones.isEmpty) {
+			                	<ul>
+			                	@for(phone <- client.getPhones) {
+			                		<li style="display:inline;">@phone.getPhoneNumber()</li>
+			                	}
+			                	</ul>
+			                }
+			                </i>
+			            </div>
+			            <div>
+			                Mobiltelefon: 
+			                <i class="formelement">
+			                @if(!client.getMobiles.isEmpty) {
+			                	<ul>
+			                	@for(phone <- client.getMobiles) {
+			                		<li style="display:inline;">@phone.getPhoneNumber()</li>
+			                	}
+			                	</ul>
+			                }
+			                </i>
+			            </div>
+			            <div>
+			                E-Mail: 
+			                <i class="formelement">
+			                @if(!client.getMails.isEmpty) {
+			                	<ul>
+			                	@for(mails <- client.getMails) {
+			                		<li style="display:inline;">@mails.getMail()</li>
+			                	}
+			                	</ul>
+			                }
+			                </i>
+			            </div>
+		            </div>
+            	</div>
+            </div>
+
+
+@footer()

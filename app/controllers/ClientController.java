@@ -2,6 +2,7 @@ package controllers;
 
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 import models.Client;
 import models.MailAdress;
@@ -13,6 +14,7 @@ import play.mvc.Controller;
 import play.mvc.Result;
 import views.html.client.clientOverview;
 import views.html.client.showCreateClientForm;
+import views.html.client.showClient;
 
 public class ClientController extends Controller {
 
@@ -39,6 +41,15 @@ public class ClientController extends Controller {
 		}
 	}
 
+	public static Result clientOverview() {
+		return ok(clientOverview.render(Client.getAllClients()));
+	}
+
+	public static Result showClient(String clientId) {
+		UUID clientUUID = UUID.fromString(clientId);
+		return ok(showClient.render(Client.getClientById(clientUUID)));
+	}
+
 	private static MailAdress createMailEntity(
 			Form<CreateClientForm> createClientForm) {
 		String mail = createClientForm.get().getMail();
@@ -59,15 +70,10 @@ public class ClientController extends Controller {
 
 	private static PhoneNumber createMobileEntity(
 			Form<CreateClientForm> createClientForm) {
-		String mobile = createClientForm.get().getPhone();
+		String mobile = createClientForm.get().getMobile();
 		if (mobile != null) {
 			return new PhoneNumber(PhoneCategory.MOBILE, mobile);
 		}
 		return null;
 	}
-
-	public static Result clientOverview() {
-		return ok(clientOverview.render(Client.getAllClients()));
-	}
-
 }

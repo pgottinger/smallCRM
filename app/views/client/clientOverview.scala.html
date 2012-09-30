@@ -3,7 +3,12 @@
 @header()
 
 <div id="title">Klienten</div>
-<div id="button"><a href="/client/showCreateClientForm">Klienten anlegen</a></div>
+
+<div id="menu">
+	<ul id="menu">
+	<li><a href="/client/showCreateClientForm">Klienten anlegen</a></li>
+	</ul>
+</div>
 <br/>
 <table>
 <tr>
@@ -13,19 +18,19 @@
 	<td id="header" width="248">Strasse</td>
 	<td id="header" width="50">PLZ</td>
 	<td id="header" width="238">Ort</td>
-	<td id="header" width="144">E-Mail</td>
+	<td id="header" width="144">Telefon</td>
 </tr>
 
 @for(client <- clients) {
-  <tr>	
+  <tr onClick="location.href='showClient/@client.getClientId()'">	
   	<td id="content">@client.getName()</td>
 	<td id="content">@client.getPrename()</td>
 	<td id="content">@client.getBirthday().format("dd.MM.yyyy")</td>
 	<td id="content">@client.getStreet() @client.getStreetNumber()</td>
 	<td id="content">@client.getZipCode()</td>
 	<td id="content">@client.getCity()</td>
-	<td id="content">@client.getMails().iterator.next().getMail()</td>
-  </tr>
+	<td id="content">@client.getPhones().iterator.next().getPhoneNumber()</td>
+	</tr>
 } 
 
 </table>
