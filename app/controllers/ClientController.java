@@ -1,7 +1,5 @@
 package controllers;
 
-import java.util.List;
-import java.util.Map;
 import java.util.UUID;
 
 import models.Client;
@@ -9,12 +7,11 @@ import models.MailAdress;
 import models.PhoneNumber;
 import models.PhoneNumber.PhoneCategory;
 import play.data.Form;
-import play.data.validation.ValidationError;
 import play.mvc.Controller;
 import play.mvc.Result;
 import views.html.client.clientOverview;
-import views.html.client.showCreateClientForm;
 import views.html.client.showClient;
+import views.html.client.showCreateClientForm;
 
 public class ClientController extends Controller {
 
@@ -26,8 +23,6 @@ public class ClientController extends Controller {
 		Form<CreateClientForm> createClientForm = form(CreateClientForm.class)
 				.bindFromRequest();
 		if (createClientForm.hasErrors()) {
-			Map<String, List<ValidationError>> errors = createClientForm
-					.errors();
 			return badRequest(showCreateClientForm.render(createClientForm));
 		} else {
 			MailAdress mail = createMailEntity(createClientForm);

@@ -24,6 +24,11 @@ import controllers.CreateClientForm;
 @Entity
 public class Client extends Model {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 2724105310533188518L;
+
 	@Id
 	private final UUID clientId;
 
@@ -35,7 +40,7 @@ public class Client extends Model {
 	private final Date birthday;
 	private final String birthplace;
 
-	private final String birthCountry;
+	private final String birthcountry;
 	private final String gender;
 	private final String familyStatus;
 	private final String occupation;
@@ -78,7 +83,7 @@ public class Client extends Model {
 
 		this.birthplace = form.birthplace;
 
-		this.birthCountry = form.birthCountry;
+		this.birthcountry = form.birthcountry;
 		this.gender = form.gender;
 		this.familyStatus = form.getFamilyStatus();
 		this.occupation = form.occupation;
@@ -136,7 +141,7 @@ public class Client extends Model {
 		return city;
 	}
 
-	public Collection<MailAdress> getMails() {
+	public List<MailAdress> getMails() {
 		return mails;
 	}
 
@@ -153,7 +158,7 @@ public class Client extends Model {
 	}
 
 	public String getBirthCountry() {
-		return birthCountry;
+		return birthcountry;
 	}
 
 	public String getGender() {

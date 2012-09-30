@@ -24,7 +24,7 @@ public class CreateClientForm {
 
 	public String birthplace;
 
-	public String birthCountry;
+	public String birthcountry;
 
 	@Required
 	public String gender;
@@ -144,11 +144,11 @@ public class CreateClientForm {
 	}
 
 	public String getBirthCountry() {
-		return birthCountry;
+		return birthcountry;
 	}
 
-	public void setBirthCountry(String birthCountry) {
-		this.birthCountry = birthCountry;
+	public void setBirthcountry(String birthCountry) {
+		this.birthcountry = birthCountry;
 	}
 
 	public String getGender() {
