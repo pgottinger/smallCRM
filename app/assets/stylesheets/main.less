@@ -13,9 +13,43 @@ body {
 // === Menu ===
 
 div#menu {
-  font-size: 16px;
   float: right;
   margin-right: 30px; 
+  
+  ul {
+   display: block;
+   height: 30px;
+ 
+     li {
+       display:inline;
+     }
+
+     li a {
+       color: @menuColor;
+       padding: 10px;
+       border-radius: 5px;
+       background: @menuBackground;
+       text-decoration:none;
+       position:relative;
+     }
+
+     li a:hover {
+       color: @menuColorHover;
+       background: @menuBackgroundHover;
+     }
+  }
+}
+
+.font16 {
+  font-size:16;
+}
+
+.font12 {
+  font-size:12;
+}
+
+.font10 {
+  font-size:10;
 }
 
 div#messagebadge {
@@ -36,29 +70,7 @@ div#messagebadge {
 }
 
 
-ul#menu {
- display: block;
- height: 30px;
- 
- li {
- display:inline;
- 
-}
 
- li a {
- color: @menuColor;
- padding: 10px;
- border-radius: 5px;
- background: @menuBackground;
- text-decoration:none;
- position:relative;
-}
-
- li a:hover {
-  color: @menuColorHover;
-  background: @menuBackgroundHover;
-}
-}
 
 // === Footer ===
 div#footer {

@@ -1,0 +1,16 @@
+@(client: Client, title:String)
+<div id="title">@client.getPrename() @client.getName()
+@if(title != null) {
+- @title 
+}
+</div>
+<div id="menu" class="font12">
+	<ul>
+	<li><a href="/client/showClient/@client.getClientId">&Uuml;bersicht</a></li>
+	<li><a href="#">Bearbeiten</a></li>
+	<li><a href="#">Kontakte</a></li>
+	<li><a href="/client/listOverview/@client.getClientId">Listen</a></li>
+	<li><a href="#">Drucken</a></li>
+	</ul>
+</div>
+<br/><br/>
