@@ -13,7 +13,9 @@ import views.html.client.clientOverview;
 import views.html.client.showClient;
 import views.html.client.showCreateClientForm;
 import views.html.client.showListOverview;
+import actions.BasicAuth;
 
+@BasicAuth
 public class ClientController extends Controller {
 
 	public static Result showCreateClientForm() {

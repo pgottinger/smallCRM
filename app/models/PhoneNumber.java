@@ -27,10 +27,6 @@ public class PhoneNumber extends Model {
 		this.phoneNumber = phoneNumber;
 	}
 
-	public UUID getPhoneId() {
-		return phoneId;
-	}
-
 	public PhoneCategory getCategory() {
 		return category;
 	}
