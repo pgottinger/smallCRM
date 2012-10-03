@@ -3,8 +3,6 @@ package models;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;
@@ -12,12 +10,11 @@ import java.util.UUID;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 import models.PhoneNumber.PhoneCategory;
-
 import play.data.Form;
-import play.data.validation.Constraints.Required;
 import play.db.ebean.Model;
 import controllers.CreateClientForm;
 
@@ -57,6 +54,11 @@ public class Client extends Model {
 	@OneToMany(cascade = CascadeType.ALL)
 	private final List<MailAdress> mails = new ArrayList<MailAdress>();
 
+	@ManyToOne
+	private final Court court;
+
+	private final String fileReference;
+
 	private final Date createdOn;
 
 	public static Model.Finder<String, Client> findByName = new Model.Finder(
@@ -66,7 +68,7 @@ public class Client extends Model {
 			UUID.class, Client.class);
 
 	public Client(Form<CreateClientForm> clientForm, MailAdress mail,
-			PhoneNumber phone, PhoneNumber mobile) {
+			PhoneNumber phone, PhoneNumber mobile, Court court) {
 		CreateClientForm form = clientForm.get();
 
 		this.clientId = UUID.randomUUID();
@@ -88,6 +90,8 @@ public class Client extends Model {
 		this.familyStatus = form.getFamilyStatus();
 		this.occupation = form.occupation;
 		this.confession = form.confession;
+		this.court = court;
+		this.fileReference = form.fileReference;
 
 		if (phone != null) {
 			phones.add(phone);
@@ -205,6 +209,18 @@ public class Client extends Model {
 
 	public Date getCreatedOn() {
 		return createdOn;
+	}
+
+	public Court getCourt() {
+		return court;
+	}
+
+	public String getBirthcountry() {
+		return birthcountry;
+	}
+
+	public String getFileReference() {
+		return fileReference;
 	}
 
 }

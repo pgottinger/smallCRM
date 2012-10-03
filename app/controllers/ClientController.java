@@ -1,8 +1,10 @@
 package controllers;
 
+import java.util.List;
 import java.util.UUID;
 
 import models.Client;
+import models.Court;
 import models.MailAdress;
 import models.PhoneNumber;
 import models.PhoneNumber.PhoneCategory;
@@ -12,31 +14,46 @@ import play.mvc.Result;
 import views.html.client.clientOverview;
 import views.html.client.showClient;
 import views.html.client.showCreateClientForm;
-import views.html.client.showListOverview;
-import actions.BasicAuth;
 
-@BasicAuth
 public class ClientController extends Controller {
 
 	public static Result showCreateClientForm() {
-		return ok(showCreateClientForm.render(form(CreateClientForm.class)));
+		List<Court> courts = Court.getAllCourts();
+		return ok(showCreateClientForm.render(form(CreateClientForm.class),
+				courts));
+
 	}
 
 	public static Result createClient() {
 		Form<CreateClientForm> createClientForm = form(CreateClientForm.class)
 				.bindFromRequest();
 		if (createClientForm.hasErrors()) {
-			return badRequest(showCreateClientForm.render(createClientForm));
+			List<Court> courts = Court.getAllCourts();
+			return badRequest(showCreateClientForm.render(createClientForm,
+					courts));
 		} else {
 			MailAdress mail = createMailEntity(createClientForm);
 			PhoneNumber phoneNumber = createPhoneEntity(createClientForm);
 			PhoneNumber mobileNumber = createMobileEntity(createClientForm);
+			Court court = createCourt(createClientForm);
+
 			Client client = new Client(createClientForm, mail, phoneNumber,
-					mobileNumber);
+					mobileNumber, court);
 			client.save();
 
 			return redirect(routes.ClientController.clientOverview());
 		}
+	}
+
+	private static Court createCourt(Form<CreateClientForm> createClientForm) {
+		CreateClientForm form = createClientForm.get();
+		if (form.isNewCourt()) {
+			Court court = new Court(form.courtName, form.courtStreet,
+					form.courtStreetNumber, form.courtZipCode, form.courtCity);
+			court.save();
+			return court;
+		}
+		return Court.findCourtById(form.court);
 	}
 
 	public static Result clientOverview() {
@@ -46,11 +63,6 @@ public class ClientController extends Controller {
 	public static Result showClient(String clientId) {
 		UUID clientUUID = UUID.fromString(clientId);
 		return ok(showClient.render(Client.getClientById(clientUUID)));
-	}
-
-	public static Result showListOverview(String clientId) {
-		UUID clientUUID = UUID.fromString(clientId);
-		return ok(showListOverview.render(Client.getClientById(clientUUID)));
 	}
 
 	private static MailAdress createMailEntity(

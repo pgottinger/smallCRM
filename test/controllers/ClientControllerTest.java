@@ -174,34 +174,6 @@ public class ClientControllerTest {
 		assertTrue(resultString.contains(MAIL));
 	}
 
-	@Test
-	public void testShowListOverview() {
-		Client dummyClient = createDummyClientAndReturn();
-		Result result = callAction(
-				controllers.routes.ref.ClientController.showListOverview(dummyClient
-						.getClientId().toString()),
-				fakeRequest()
-						.withSession("username", currentUser.getUserName()));
-
-		assertThat(status(result), is(OK));
-		assertTrue(contentAsString(result).contains("Befreiungen"));
-		assertTrue(contentAsString(result).contains("Antr&auml;ge"));
-		assertTrue(contentAsString(result).contains("Ausweise"));
-		assertTrue(contentAsString(result).contains("Versicherungen"));
-		assertTrue(contentAsString(result).contains("Gesundheit"));
-		assertTrue(contentAsString(result).contains("Ausl&auml;nder"));
-		assertTrue(contentAsString(result).contains("Finanzen"));
-		assertTrue(contentAsString(result).contains("Wohnung"));
-		assertTrue(contentAsString(result).contains("Sonstiges"));
-	}
-
-	@Test
-	public void testOnlyLoggedInUsersCanAccessClientController() {
-		Result result = callAction(controllers.routes.ref.ClientController
-				.clientOverview());
-		assertTrue(result.toString().contains("/login"));
-	}
-
 	private Result createDummyClient() {
 		Map<String, String> data = createFormData();
 		return createClientForGivenData(data);

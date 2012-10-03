@@ -1,0 +1,4 @@
+@(elements: helper.FieldElements)
+<p @if(elements.hasErrors) {id="error"}>
+    @elements.label @elements.input 
+</p>

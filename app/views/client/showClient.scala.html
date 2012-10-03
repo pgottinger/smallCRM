@@ -1,8 +1,18 @@
 @(client: Client)
 
 @header()
-@clientNameHeader(client,null)
 
+<div id="title">@client.getPrename() @client.getName()</div>
+
+<div id="menu">
+	<ul id="menu">
+	<li><a href="#">Klient bearbeiten</a></li>
+	<li><a href="#">Kontakte</a></li>
+	<li><a href="#">Listen</a></li>
+	</ul>
+</div>
+
+<br/><br/>
 
 <div id="formboxes-left">
             	<div id="formbox">
@@ -98,6 +108,30 @@
 			                }
 			                </i>
 			            </div>
+		            </div>
+            	</div>
+            	
+            	<div id="formbox">
+            		<div id="formbox-title">Amtsgericht</div>
+            		<div id="formbox-content">
+            			<p>
+			                Aktenzeichen: <i class="formelement">@client.getFileReference()</i>
+			            </p>
+            			<p>
+			                Gericht: <i class="formelement">@client.getCourt().getCourtName()</i>
+			            </p>
+			            <p>
+			                Strasse: <i class="formelement">@client.getCourt().getCourtStreet()</i>
+			            </p>
+			            <p>
+			                Hausnummer: <i class="formelement">@client.getCourt().getCourtStreetNumber()</i>
+			            </p>
+			            <p>
+			                Postleitzahl: <i class="formelement">@client.getCourt().getCourtZipCode()</i>
+			            </p>
+			            <p>
+			                Ort: <i class="formelement">@client.getCourt().getCourtCity()</i>
+			            </p>
 		            </div>
             	</div>
             </div>

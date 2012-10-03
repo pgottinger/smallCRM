@@ -18,7 +18,6 @@ GET		/client/showCreateClientForm	controllers.ClientController.showCreateClientF
 POST	/client/createClient			controllers.ClientController.createClient()
 GET		/client/clientOverview			controllers.ClientController.clientOverview()
 GET		/client/showClient/:clientId	controllers.ClientController.showClient(clientId: String)
-GET		/client/listOverview/:clientId	controllers.ClientController.showListOverview(clientId: String)
 
 
 # == Admin ==

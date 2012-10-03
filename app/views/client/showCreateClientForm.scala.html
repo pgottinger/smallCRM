@@ -1,12 +1,15 @@
-@(form: Form[CreateClientForm])
+@(clientForm: Form[CreateClientForm], courts: List[Court])
+@import helper._
 
 @header()
+
+@implicitField = @{ FieldConstructor(formFieldConstructor.render) }
 
 <div id="title">Klienten anlegen</div>
 
 @helper.form(routes.ClientController.createClient) {
                        
-            @if(form.hasErrors) { 
+            @if(clientForm.hasErrors) { 
                 <p id="error">Bitte Eingaben pr&uuml;fen!</p>
             }
             
@@ -20,64 +23,42 @@
             	<div id="formbox">
             		<div id="formbox-title">Grunddaten</div>
             		<div id="formbox-content"> 
-			            <p>
-			                Anrede: <select type="formOfAdress" name="formOfAdress" class="formelement">
-			                	<option value="Herr">Herr</option>
-			                	<option value="Frau">Frau</option>
-			                </select>
-			            </p>
-			            <p>
-			                Titel: <input type="title" name="title" class="formelement">
-			            </p>
-			            
-			            <p>
-			                Name: <input type="name" name="name" class="formelement">
-			            </p>
-			            
-			            <p>
-			                Vorname: <input type="prename" name="prename" class="formelement">
-			            </p>
-			            
-			              <p>
-			                Geburtsdatum: <input type="birthday" name="birthday" class="formelement">
-			            </p>
-			            
-			            <p>
-			                Geburtsort: <input type="birthplace" name="birthplace" class="formelement">
-			            </p>
-			            
-			            <p>
-			                Geburtsland: <input type="birthcountry" name="birthcountry" class="formelement">
-			            </p>
-			            
-			            <p>
-			                Geschlecht: <select type="gender" name="gender" class="formelement">
-			                	<option value="m&auml;nnlich">m&auml;nnlich</option>
-			                	<option value="weiblich">weiblich</option>
-			                </select>
-			            </p>
-			            
-				        <p>
-	                		Familienstatus: <select type="familyStatus" name="familyStatus" class="formelement">
-	                			<option value="ledig">ledig</option>
-	                			<option value="verheiratet">verheiratet</option>
-	                			<option value="geschieden">geschieden</option>
-	                			<option value="verwitwet">verwitwet</option>
-	                			<option value="sonstiges">sonstiges</option>
-	                		</select>
-	            		</p>
-	            		<p>
-	                		Beruf: <input type="occupation" name="occupation" class="formelement">
-	            		</p>
-	            		<p>
-	                		Konfession:<select type="confession" name="confession" class="formelement">
-			                	<option value="katholisch">katholisch</option>
-			                	<option value="evangelisch">evangelisch</option>
-			                	<option value="muslimisch">muslimisch</option>
-			                	<option value="konfessionslos">konfessionslos</option>
-			                	<option value="sonstiges">sonstiges</option>
-			                </select>
-	            		</p>
+		                @select(
+			            	clientForm("formOfAdress"), 
+	        				options("Herr" -> "Herr","Frau" -> "Frau"),
+	        				'_label -> "Anrede:",
+	        				'class -> "formelement")
+	
+		            	@inputText(clientForm("title"), '_label -> "Titel:", 'class -> "formelement")
+	
+		            	@inputText(clientForm("name"), '_label -> "Name:", 'class -> "formelement")
+	
+		                @inputText(clientForm("prename"), '_label -> "Vorname:", 'class -> "formelement")
+	
+		                @inputText(clientForm("birthday"), '_label -> "Geburtsdatum:", 'class -> "formelement")
+	
+		              	@inputText(clientForm("birthplace"), '_label -> "Geburtsort:", 'class -> "formelement")
+	
+		                @inputText(clientForm("birthcountry"), '_label -> "Geburtsland:", 'class -> "formelement")
+		               	@select(
+			                clientForm("gender"), 
+	        				options("männlich" -> "männlich","weiblich" -> "weiblich"),
+	        				'_label -> "Geschlecht:",
+	        				'class -> "formelement")
+	
+		               	@select(
+			                clientForm("familyStatus"), 
+	        				options("ledig" -> "ledig","verheiratet" -> "verheiratet", "geschieden" -> "geschieden", "verwitwet" -> "verwitwet", "sonstiges" -> "sonstiges"),
+	        				'_label -> "Familienstatus:",
+	        				'class -> "formelement")
+	
+	            		@inputText(clientForm("occupation"), '_label -> "Beruf:", 'class -> "formelement")
+	
+	        		 	@select(
+			                clientForm("confession"), 
+	        				options("katholisch" -> "katholisch","evangelisch" -> "evangelisch", "muslimisch" -> "muslimisch", "konfessionslos" -> "konfessionslos", "sonstiges" -> "sonstiges"),
+	        				'_label -> "Konfession:",
+	        				'class -> "formelement")
             		</div>
             	</div>
             	<br/>
@@ -90,29 +71,46 @@
             	<div id="formbox">
             		<div id="formbox-title">Kontaktdaten</div>
             		<div id="formbox-content">
-			            <p>
-			                Strasse: <input type="street" name="street" class="formelement">
-			            </p>
-			            <p>
-			                Hausnummer: <input type="streetnumber" name="streetNumber" class="formelement">
-			            </p>
-			            <p>
-			                Postleitzahl: <input type="zipCode" name="zipCode" class="formelement">
-			            </p>
-			            <p>
-			                Ort: <input type="city" name="city" class="formelement">
-			            </p>
-			            <p>
-			                Telefon: <input type="phone" name="phone" class="formelement">
-			            </p>
-			            <p>
-			                Mobiltelefon: <input type="mobile" name="mobile" class="formelement">
-			            </p>
-			            <p>
-			                E-Mail: <input type="mail" name="mail" class="formelement">
-			            </p>
+		               	@inputText(clientForm("street"), '_label -> "Strasse:", 'class -> "formelement")
+	
+		                @inputText(clientForm("streetNumber"), '_label -> "Hausnummer:", 'class -> "formelement")
+	
+		                @inputText(clientForm("zipCode"), '_label -> "Postleitzahl:", 'class -> "formelement")
+	
+		                @inputText(clientForm("city"), '_label -> "Ort:", 'class -> "formelement")
+	
+		                @inputText(clientForm("phone"), '_label -> "Telefon:", 'class -> "formelement")
+	
+		                @inputText(clientForm("mobile"), '_label -> "Mobiltelefon:", 'class -> "formelement")
+	
+		               	@inputText(clientForm("mail"), '_label -> "E-Mail:", 'class -> "formelement")
 		            </div>
             	</div>
+            	
+            	<div id="formbox">
+            		<div id="formbox-title">Amtsgericht</div>
+            		<div id="formbox-content">
+            		@inputText(clientForm("fileReference"), '_label -> "Aktenzeichen:", 'class -> "formelement")	
+
+                		@select(
+			                clientForm("court"), 
+            				options(Court.list),
+            				'_label -> "Amtsgericht:",
+            				'class -> "formelement")
+	                	
+						@checkbox(clientForm("newCourt"), '_label -> "Neues Amtsgericht anlegen:", 'class -> "formelement")
+
+			            @inputText(clientForm("courtName"), '_label -> "Name:", 'class -> "formelement")
+
+						@inputText(clientForm("courtStreet"), '_label -> "Strasse:", 'class -> "formelement")
+						
+						@inputText(clientForm("courtStreetNumber"), '_label -> "Hausnummer:", 'class -> "formelement")
+
+		                @inputText(clientForm("courtZipCode"), '_label -> "Postleitzahl:", 'class -> "formelement")
+
+		                @inputText(clientForm("courtCity"), '_label -> "Ort:", 'class -> "formelement")
+
+            	
             </div>
         }
 

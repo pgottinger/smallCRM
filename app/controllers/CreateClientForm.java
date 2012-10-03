@@ -2,6 +2,7 @@ package controllers;
 
 import java.util.Date;
 
+import models.Court;
 import play.data.format.Formats;
 import play.data.validation.Constraints.Required;
 
@@ -54,6 +55,23 @@ public class CreateClientForm {
 	public String phone;
 
 	public String mobile;
+
+	public String court;
+
+	public boolean newCourt;
+
+	public String courtName;
+
+	public String courtStreet;
+
+	public String courtStreetNumber;
+
+	public String courtZipCode;
+
+	public String courtCity;
+
+	@Required
+	public String fileReference;
 
 	public String getName() {
 		return name;
@@ -131,6 +149,13 @@ public class CreateClientForm {
 		return title;
 	}
 
+	public String getTitleForForm() {
+		if (title == null) {
+			return "";
+		}
+		return title;
+	}
+
 	public void setTitle(String title) {
 		this.title = title;
 	}
@@ -198,4 +223,73 @@ public class CreateClientForm {
 	public void setMobile(String mobile) {
 		this.mobile = mobile;
 	}
+
+	public String getCourt() {
+		return court;
+	}
+
+	public void setCourt(String court) {
+		this.court = court;
+	}
+
+	public boolean isNewCourt() {
+		return newCourt;
+	}
+
+	public void setNewCourt(boolean newCourt) {
+		this.newCourt = newCourt;
+	}
+
+	public String getCourtName() {
+		return courtName;
+	}
+
+	public void setCourtName(String courtName) {
+		this.courtName = courtName;
+	}
+
+	public String getCourtStreet() {
+		return courtStreet;
+	}
+
+	public void setCourtStreet(String courtStreet) {
+		this.courtStreet = courtStreet;
+	}
+
+	public String getCourtStreetNumber() {
+		return courtStreetNumber;
+	}
+
+	public void setCourtStreetNumber(String courtStreetNumber) {
+		this.courtStreetNumber = courtStreetNumber;
+	}
+
+	public String getCourtZipCode() {
+		return courtZipCode;
+	}
+
+	public void setCourtZipCode(String courtZipCode) {
+		this.courtZipCode = courtZipCode;
+	}
+
+	public String getCourtCity() {
+		return courtCity;
+	}
+
+	public void setCourtCity(String courtCity) {
+		this.courtCity = courtCity;
+	}
+
+	public String getBirthcountry() {
+		return birthcountry;
+	}
+
+	public String getFileReference() {
+		return fileReference;
+	}
+
+	public void setFileReference(String fileReference) {
+		this.fileReference = fileReference;
+	}
+
 }
