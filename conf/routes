@@ -14,10 +14,11 @@ GET		/install					controllers.Installation.install()
 POST	/installSystem				controllers.Installation.installSystem()
 
 # == Client ==
-GET		/client/showCreateClientForm	controllers.ClientController.showCreateClientForm()
-POST	/client/createClient			controllers.ClientController.createClient()
-GET		/client/clientOverview			controllers.ClientController.clientOverview()
-GET		/client/showClient/:clientId	controllers.ClientController.showClient(clientId: String)
+GET		/client/showCreateClientForm		controllers.ClientController.showCreateClientForm()
+POST	/client/createClient				controllers.ClientController.createClient()
+GET		/client/clientOverview				controllers.ClientController.clientOverview()
+GET		/client/showClient/:clientId		controllers.ClientController.showClient(clientId: String)
+GET		/client/listOverview/:clientId	controllers.ClientController.showListOverview(clientId: String)
 
 
 # == Admin ==

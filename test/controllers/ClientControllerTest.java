@@ -22,7 +22,6 @@ import models.User;
 
 import org.junit.After;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 
 import play.mvc.Result;
@@ -30,6 +29,7 @@ import play.test.FakeApplication;
 
 public class ClientControllerTest {
 
+	private static final String FILE_REFERENCE = "0815";
 	private static final String MAIL = "max@mustermann.org";
 	private static final String MOBILE = "032 / 2385";
 	private static final String PHONE = "033 / 4938";
@@ -174,6 +174,33 @@ public class ClientControllerTest {
 		assertTrue(resultString.contains(MAIL));
 	}
 
+	@Test
+	public void testShowListOverview() {
+		Client dummyClient = createDummyClientAndReturn();
+		Result result = callAction(
+				controllers.routes.ref.ClientController.showListOverview(dummyClient
+						.getClientId().toString()),
+				fakeRequest()
+						.withSession("username", currentUser.getUserName()));
+		assertThat(status(result), is(OK));
+		assertTrue(contentAsString(result).contains("Befreiungen"));
+		assertTrue(contentAsString(result).contains("Antr&auml;ge"));
+		assertTrue(contentAsString(result).contains("Ausweise"));
+		assertTrue(contentAsString(result).contains("Versicherungen"));
+		assertTrue(contentAsString(result).contains("Gesundheit"));
+		assertTrue(contentAsString(result).contains("Ausl&auml;nder"));
+		assertTrue(contentAsString(result).contains("Finanzen"));
+		assertTrue(contentAsString(result).contains("Wohnung"));
+		assertTrue(contentAsString(result).contains("Sonstiges"));
+	}
+
+	@Test
+	public void testOnlyLoggedInUsersCanAccessClientController() {
+		Result result = callAction(controllers.routes.ref.ClientController
+				.clientOverview());
+		assertTrue(result.toString().contains("/login"));
+	}
+
 	private Result createDummyClient() {
 		Map<String, String> data = createFormData();
 		return createClientForGivenData(data);
@@ -234,6 +261,13 @@ public class ClientControllerTest {
 		data.put("phone", PHONE);
 		data.put("mobile", MOBILE);
 		data.put("mail", MAIL);
+		data.put("fileReference", FILE_REFERENCE);
+		data.put("newCourt", "true");
+		data.put("courtName", "Dummy Court");
+		data.put("courtStreet", STREET);
+		data.put("courtStreetNumber", STREET_NUMBER);
+		data.put("courtZipCode", ZIP_CODE);
+		data.put("courtCity", CITY);
 		return data;
 	}
 

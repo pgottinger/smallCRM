@@ -14,7 +14,10 @@ import play.mvc.Result;
 import views.html.client.clientOverview;
 import views.html.client.showClient;
 import views.html.client.showCreateClientForm;
+import views.html.client.showListOverview;
+import actions.BasicAuth;
 
+@BasicAuth
 public class ClientController extends Controller {
 
 	public static Result showCreateClientForm() {
@@ -63,6 +66,11 @@ public class ClientController extends Controller {
 	public static Result showClient(String clientId) {
 		UUID clientUUID = UUID.fromString(clientId);
 		return ok(showClient.render(Client.getClientById(clientUUID)));
+	}
+
+	public static Result showListOverview(String clientId) {
+		UUID clientUUID = UUID.fromString(clientId);
+		return ok(showListOverview.render(Client.getClientById(clientUUID)));
 	}
 
 	private static MailAdress createMailEntity(
