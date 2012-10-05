@@ -44,10 +44,7 @@
 	            		</p>
             		</div>
             	</div>
-            	<br/>
-            </div>
-            
-            <div id="formboxes-right">
+            	
             	<div id="formbox">
             		<div id="formbox-title">Kontaktdaten</div>
             		<div id="formbox-content">
@@ -101,7 +98,9 @@
 			            </div>
 		            </div>
             	</div>
-            	
+            </div>
+            
+            <div id="formboxes-right">
             	<div id="formbox">
             		<div id="formbox-title">Amtsgericht</div>
             		<div id="formbox-content">
@@ -125,6 +124,36 @@
 			            </p>
 		            </div>
             	</div>
+            	
+            	<div id="formbox">
+            		<div id="formbox-title">Weitere Daten</div>
+            		<div id="formbox-content">
+            			<p>
+			                Wohnverhältnisse: <i class="formelement">
+			                @if(client.livesAtHome()) {
+			                	@Client.LIVES_AT_HOME
+			                } else {
+			                	@Client.LIVES_NOT_AT_HOME
+			                }
+			                </i>
+			            </p>
+            			<p>
+			                Vermögensverhältnisse: <i class="formelement">
+			                @if(client.hasOwnIncome()) {
+			                	@Client.HAS_OWN_INCOME
+			                } else {
+			                	@Client.HAS_NO_OWN_INCOME
+			                }
+			                </i>
+			            </p>
+            			<p>
+			                Gesetzliche Betreuung seit: <i class="formelement">@client.getBeginOfAssistanceAsString()</i>
+			            </p>
+            			<p>
+			                Betreuung bei uns seit: <i class="formelement">@client.getBeginOfAssistanceInThisCompanyAsString()</i>
+			            </p>	
+					</div>
+				</div>
             </div>
 
 

@@ -21,6 +21,12 @@ import controllers.CreateClientForm;
 @Entity
 public class Client extends Model {
 
+	private static final String DATE_FORMAT = "dd.MM.yyyy";
+	public static final String HAS_OWN_INCOME = "vermögend";
+	public static final String HAS_NO_OWN_INCOME = "Staatskasse";
+	public static final String LIVES_AT_HOME = "zu Hause";
+	public static final String LIVES_NOT_AT_HOME = "im Heim";
+
 	/**
 	 * 
 	 */
@@ -59,6 +65,14 @@ public class Client extends Model {
 
 	private final String fileReference;
 
+	private final Date beginOfAssistance;
+
+	private final Date beginOfAssistanceInThisCompany;
+
+	private final boolean ownIncome;
+
+	private final boolean livesAtHome;
+
 	private final Date createdOn;
 
 	public static Model.Finder<String, Client> findByName = new Model.Finder(
@@ -92,6 +106,10 @@ public class Client extends Model {
 		this.confession = form.confession;
 		this.court = court;
 		this.fileReference = form.fileReference;
+		this.beginOfAssistance = form.beginOfAssistance;
+		this.beginOfAssistanceInThisCompany = form.beginOfAssistanceInThisCompany;
+		this.ownIncome = form.ownIncome;
+		this.livesAtHome = form.livesAtHome;
 
 		if (phone != null) {
 			phones.add(phone);
@@ -133,7 +151,7 @@ public class Client extends Model {
 	}
 
 	public String getBirthdayAsString() {
-		DateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy");
+		DateFormat dateFormat = new SimpleDateFormat(DATE_FORMAT);
 		return dateFormat.format(birthday);
 	}
 
@@ -223,4 +241,29 @@ public class Client extends Model {
 		return fileReference;
 	}
 
+	public Date getBeginOfAssistance() {
+		return beginOfAssistance;
+	}
+
+	public String getBeginOfAssistanceAsString() {
+		DateFormat dateFormat = new SimpleDateFormat(DATE_FORMAT);
+		return dateFormat.format(beginOfAssistance);
+	}
+
+	public Date getBeginOfAssistanceInThisCompany() {
+		return beginOfAssistanceInThisCompany;
+	}
+
+	public String getBeginOfAssistanceInThisCompanyAsString() {
+		DateFormat dateFormat = new SimpleDateFormat(DATE_FORMAT);
+		return dateFormat.format(beginOfAssistanceInThisCompany);
+	}
+
+	public boolean hasOwnIncome() {
+		return ownIncome;
+	}
+
+	public boolean livesAtHome() {
+		return livesAtHome;
+	}
 }

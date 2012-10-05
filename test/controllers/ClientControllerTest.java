@@ -268,6 +268,10 @@ public class ClientControllerTest {
 		data.put("courtStreetNumber", STREET_NUMBER);
 		data.put("courtZipCode", ZIP_CODE);
 		data.put("courtCity", CITY);
+		data.put("ownIncome", "true");
+		data.put("livesAtHome", "true");
+		data.put("beginOfAssistance", BIRTHDAY);
+		data.put("beginOfAssistanceInThisCompany", BIRTHDAY);
 		return data;
 	}
 

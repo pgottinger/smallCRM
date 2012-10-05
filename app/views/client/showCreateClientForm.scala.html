@@ -61,13 +61,7 @@
 	        				'class -> "formelement")
             		</div>
             	</div>
-            	<br/>
-            	<p>
-                	<button type="submit">Klienten anlegen</button>
-            	</p>
-            </div>
-            
-            <div id="formboxes-right">
+            	
             	<div id="formbox">
             		<div id="formbox-title">Kontaktdaten</div>
             		<div id="formbox-content">
@@ -86,7 +80,13 @@
 		               	@inputText(clientForm("mail"), '_label -> "E-Mail:", 'class -> "formelement")
 		            </div>
             	</div>
-            	
+            	<br/>
+            	<p>
+                	<button type="submit">Klienten anlegen</button>
+            	</p>
+            </div>
+            
+            <div id="formboxes-right">
             	<div id="formbox">
             		<div id="formbox-title">Amtsgericht</div>
             		<div id="formbox-content">
@@ -109,9 +109,46 @@
 		                @inputText(clientForm("courtZipCode"), '_label -> "Postleitzahl:", 'class -> "formelement")
 
 		                @inputText(clientForm("courtCity"), '_label -> "Ort:", 'class -> "formelement")
+					</div>
+				</div>
 
-            	
-            </div>
+				<div id="formbox">
+            		<div id="formbox-title">Aufgabenkreise</div>
+            		<div id="formbox-content">
+            		@checkbox(clientForm("assetCare"), '_label -> "Vermögenssorge:", 'class -> "formelement")
+            		@checkbox(clientForm("healthCare"), '_label -> "Gesundheitssorge:", 'class -> "formelement")
+            		@checkbox(clientForm("residenceCare"), '_label -> "Aufenthaltsbestimmungsrecht", 'class -> "formelement")
+            		@checkbox(clientForm("enforcementOfClaims"), '_label -> "Geltendmachung von Ansprüchen", 'class -> "formelement")
+            		@checkbox(clientForm("officialAffairs"), '_label -> "Behördliche Angelegenheiten:", 'class -> "formelement")
+            		@checkbox(clientForm("postalAffairs"), '_label -> "Postalische Angelegenheiten:", 'class -> "formelement")
+            		@checkbox(clientForm("insuranceAffairs"), '_label -> "Versicherungsangelegenheiten:", 'class -> "formelement")
+            		@checkbox(clientForm("livingAffairs"), '_label -> "Wohnungsangelegenheiten", 'class -> "formelement")
+            		@checkbox(clientForm("heritageAffairs"), '_label -> "Erbschaftsangelegenheiten:", 'class -> "formelement")	
+            		@checkbox(clientForm("otherCare"), '_label -> "Sonstige Aufgabenkreise:", 'class -> "formelement")
+					</div>
+				</div>			
+				<div id="formbox">
+            		<div id="formbox-title">Weitere Daten</div>
+            		<div id="formbox-content">
+            		@select(
+			                clientForm("livesAtHome"), 
+	        				options("true" -> Client.LIVES_AT_HOME,"false" -> Client.LIVES_NOT_AT_HOME),
+	        				'_label -> "Wohnverhältnisse:",
+	        				'class -> "formelement")
+            		
+            		@select(
+			                clientForm("ownIncome"), 
+	        				options("true" -> Client.HAS_OWN_INCOME,"false" -> Client.HAS_NO_OWN_INCOME),
+	        				'_label -> "Vermögensverhältnisse:",
+	        				'class -> "formelement")
+            		
+            		@inputText(clientForm("beginOfAssistance"), '_label -> "Gesetzliche Betreuung seit:", 'class -> "formelement")
+            		
+            		@inputText(clientForm("beginOfAssistanceInThisCompany"), '_label -> "Betreuung bei uns:", 'class -> "formelement")	
+					
+					</div>
+				</div>
+			</div>
         }
 
 @footer()

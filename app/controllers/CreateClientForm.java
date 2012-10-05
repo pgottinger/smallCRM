@@ -73,6 +73,27 @@ public class CreateClientForm {
 	@Required
 	public String fileReference;
 
+	@Formats.DateTime(pattern = "dd.MM.yyyy")
+	public Date beginOfAssistance;
+
+	@Formats.DateTime(pattern = "dd.MM.yyyy")
+	public Date beginOfAssistanceInThisCompany;
+
+	public boolean ownIncome;
+
+	public boolean livesAtHome;
+
+	public boolean assetCare;
+	public boolean healthCare;
+	public boolean residenceCare;
+	public boolean enforcementOfClaims;
+	public boolean otherCare;
+	public boolean officialAffairs;
+	public boolean postalAffairs;
+	public boolean insuranceAffairs;
+	public boolean livingAffairs;
+	public boolean heritageAffairs;
+
 	public String getName() {
 		return name;
 	}
@@ -292,4 +313,116 @@ public class CreateClientForm {
 		this.fileReference = fileReference;
 	}
 
+	public Date getBeginOfAssistance() {
+		return beginOfAssistance;
+	}
+
+	public void setBeginOfAssistance(Date beginOfAssistance) {
+		this.beginOfAssistance = beginOfAssistance;
+	}
+
+	public Date getBeginOfAssistanceInThisCompany() {
+		return beginOfAssistanceInThisCompany;
+	}
+
+	public void setBeginOfAssistanceInThisCompany(
+			Date beginOfAssistanceInThisCompany) {
+		this.beginOfAssistanceInThisCompany = beginOfAssistanceInThisCompany;
+	}
+
+	public boolean isOwnIncome() {
+		return ownIncome;
+	}
+
+	public void setOwnIncome(boolean ownIncome) {
+		this.ownIncome = ownIncome;
+	}
+
+	public boolean isLivesAtHome() {
+		return livesAtHome;
+	}
+
+	public void setLivesAtHome(boolean livesAtHome) {
+		this.livesAtHome = livesAtHome;
+	}
+
+	public boolean isAssetCare() {
+		return assetCare;
+	}
+
+	public void setAssetCare(boolean assetCare) {
+		this.assetCare = assetCare;
+	}
+
+	public boolean isHealthCare() {
+		return healthCare;
+	}
+
+	public void setHealthCare(boolean healthCare) {
+		this.healthCare = healthCare;
+	}
+
+	public boolean isResidenceCare() {
+		return residenceCare;
+	}
+
+	public void setResidenceCare(boolean residenceCare) {
+		this.residenceCare = residenceCare;
+	}
+
+	public boolean isEnforcementOfClaim() {
+		return enforcementOfClaims;
+	}
+
+	public void setEnforcementOfClaim(boolean enforcementOfClaim) {
+		this.enforcementOfClaims = enforcementOfClaim;
+	}
+
+	public boolean isOtherCare() {
+		return otherCare;
+	}
+
+	public void setOtherCare(boolean otherCare) {
+		this.otherCare = otherCare;
+	}
+
+	public boolean isOfficialAffairs() {
+		return officialAffairs;
+	}
+
+	public void setOfficialAffairs(boolean officialAffairs) {
+		this.officialAffairs = officialAffairs;
+	}
+
+	public boolean isPostalAffairs() {
+		return postalAffairs;
+	}
+
+	public void setPostalAffairs(boolean postalAffairs) {
+		this.postalAffairs = postalAffairs;
+	}
+
+	public boolean isInsuranceAffairs() {
+		return insuranceAffairs;
+	}
+
+	public void setInsuranceAffairs(boolean insuranceAffairs) {
+		this.insuranceAffairs = insuranceAffairs;
+	}
+
+	public boolean isLivingAffairs() {
+		return livingAffairs;
+	}
+
+	public void setLivingAffairs(boolean livingAffairs) {
+		this.livingAffairs = livingAffairs;
+	}
+
+	public boolean isHeritageAffairs() {
+		return heritageAffairs;
+	}
+
+	public void setHeritageAffairs(boolean heritageAffairs) {
+		this.heritageAffairs = heritageAffairs;
+	}
 }
