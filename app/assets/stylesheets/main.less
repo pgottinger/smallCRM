@@ -54,23 +54,6 @@ div#menu {
   font-size: 10px;
 }
 
-div#messagebadge {
-  color: @messageBadgeColor;
-  position:absolute;
-  top: 35px;
-  right: 370px;
-  width: 20px;
-  height: 18px;
-  padding: 3px;
-  font-size:12px;
-  font-weight: bold;
-  border-radius: 15px;
-  border: 2px solid @messageBadgeBackground;
-  background: @messageBadgeBackground;
-  text-align:center;
-  z-index:10;
-}
-
 // === Footer ===
 div#footer {
   color: @footerColor;
@@ -96,7 +79,8 @@ div#content {
 }
 
 p#error {
-	background-color: #FF0000;
+	background-color: @errorBackground;
+	color: @errorColor;
 	display: block;
 }
 

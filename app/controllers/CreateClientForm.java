@@ -73,9 +73,11 @@ public class CreateClientForm {
 	@Required
 	public String fileReference;
 
+	@Required
 	@Formats.DateTime(pattern = "dd.MM.yyyy")
 	public Date beginOfAssistance;
 
+	@Required
 	@Formats.DateTime(pattern = "dd.MM.yyyy")
 	public Date beginOfAssistanceInThisCompany;
 
